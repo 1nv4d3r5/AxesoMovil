@@ -62,9 +62,10 @@ namespace AxesoMovil
             }
         }
 
-        public List<ClienteOTs> GetClientesUsuario(string id)
+        public List<ClienteOTs> GetClientesUsuario(string id, string cve_comp)
         {
             int id_usuario = Int32.Parse(id);
+            int cve_compania = Int32.Parse(cve_comp);
             using (AxesoEntities db = new AxesoEntities())
             {
                 var clienteots = from cliente in db.CLIENTES
@@ -74,8 +75,9 @@ namespace AxesoMovil
                                      NOMBRE_CLIENTE = cliente.NOMBRE_CLIENTE,
                                      CANTIDAD_OT = (from ot in db.ORDEN_TRABAJO
                                                     // TODO: Validar el estatus de las OTs. (i.e. que no esten rechazadas, perdidas, etc.)
-                                                    where ot.USUARIO_RESPONSABLE_OT == id_usuario && ot.CVE_CLIENTE == cliente.CVE_CLIENTE && ot.CVE_COMPANIA == cliente.CVE_COMPANIA
-                                                    group ot by ot.CVE_CLIENTE).Count()
+                                                    where ot.USUARIO_RESPONSABLE_OT == id_usuario && ot.CVE_CLIENTE == cliente.CVE_CLIENTE && ot.CVE_COMPANIA == cliente.CVE_COMPANIA && ot.CVE_COMPANIA == cve_compania
+                                                    group ot by ot.CVE_CLIENTE into otscliente
+                                                    select otscliente.Count()).FirstOrDefault()
                                  };
                 return clienteots.Where(cliente => cliente.CANTIDAD_OT > 0).ToList();
             }
