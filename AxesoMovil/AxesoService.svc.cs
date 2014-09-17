@@ -44,12 +44,12 @@ namespace AxesoMovil
             }
         }
 
-        public UsuarioInfo ValidarUsuario(string cuenta, string pass)
+        public UsuarioInfo ValidarUsuario(Login login)
         {
             using (AxesoEntities db = new AxesoEntities())
             {
                 var query = from usuario in db.USUARIO
-                            where usuario.CUENTA_USUARIO == cuenta && usuario.PASSWORD == pass
+                            where usuario.CUENTA_USUARIO == login.cuenta && usuario.PASSWORD == login.password
                             select usuario.ID_USUARIO;
                 // Un for es la manera mas simple de verificar que la lista de resultados de tipo IQueryable este vacia o no.
                 // Esta misma forma de validacion se usara para todas las operaciones que deban regresar una unica tupla o un unico campo/valor.

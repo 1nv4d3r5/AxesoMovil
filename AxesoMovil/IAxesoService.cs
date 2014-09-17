@@ -14,17 +14,19 @@ namespace AxesoMovil
     {
         [OperationContract]
         [WebGet(UriTemplate = "GetUsuario/{id}",
-            ResponseFormat=WebMessageFormat.Json)]
+            ResponseFormat = WebMessageFormat.Json)]
         UsuarioInfo GetUsuario(string id);
 
         [OperationContract]
-        [WebGet(UriTemplate = "ValidarUsuario?cuenta={cuenta}&pass={pass}",
-            ResponseFormat=WebMessageFormat.Json)]
-        UsuarioInfo ValidarUsuario(string cuenta, string pass);
+        [WebInvoke(UriTemplate = "ValidarUsuario", Method = "POST",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare)]
+        UsuarioInfo ValidarUsuario(Login login);
 
         [OperationContract]
         [WebGet(UriTemplate = "GetClientesUsuario/{id}",
-            ResponseFormat=WebMessageFormat.Json)]
+            ResponseFormat = WebMessageFormat.Json)]
         List<ClienteOTs> GetClientesUsuario(string id);
 
         [OperationContract]
