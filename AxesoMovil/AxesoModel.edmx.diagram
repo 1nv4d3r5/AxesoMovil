@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87f08cb7aac4414b9802b820f40b5f9f" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="AxesoModel.ACOPIO_MATERIALES" Width="1.5" PointX="21" PointY="67.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.AM_CONDICION_COMERCIAL" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.AM_MANO_OBRA" Width="1.5" PointX="24" PointY="72.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.AM_MATERIALES" Width="1.5" PointX="21" PointY="72.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.AMBIENTE_TRABAJO" Width="1.5" PointX="16.5" PointY="58.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.ANALISIS_MARGEN" Width="1.5" PointX="27" PointY="73.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.ASIGNA_PERSONAL_OT" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CALENDARIO" Width="1.5" PointX="8.25" PointY="69.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CALENDARIO_FESTIVO" Width="1.5" PointX="13.5" PointY="69.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CALENDARIO_LABORAL" Width="1.5" PointX="13.5" PointY="64.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CALENDARIO_NOLABORAL" Width="1.5" PointX="13.5" PointY="74.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CLASIFICACION_SERVICIO" Width="1.5" PointX="24.5" PointY="94.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CLIENTE_UBICACION" Width="1.5" PointX="8.25" PointY="79.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CLIENTE_UBICACION_DEPTO" Width="1.5" PointX="10.5" PointY="73.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CLIENTES" Width="1.5" PointX="5.25" PointY="67.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.COMPANIA" Width="1.5" PointX="3" PointY="65.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CONCEPTO_FOLIO" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CONDICION_COMERCIAL" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CONFIGURACION_MO_INDIRECTA" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.COSTO_MO" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.DEPARTAMENTO" Width="1.5" PointX="16.5" PointY="61.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.DEVOLUCION_MATERIALES" Width="1.5" PointX="26.25" PointY="57.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.DISTRIBUCION_MO" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.DISTRIBUCION_MO_NA" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.EMPLEADOS" Width="1.5" PointX="27.75" PointY="86" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.EMPRESA" Width="1.5" PointX="8.25" PointY="64.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.ENTREGA_MATERIALES" Width="1.5" PointX="23.25" PointY="67.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.ESTADO" Width="1.5" PointX="3" PointY="82.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.ESTATUS_OT" Width="1.5" PointX="16.5" PointY="64.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.ETAPA_OT" Width="1.5" PointX="16.5" PointY="75.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.GPO_USUARIO" Width="1.5" PointX="6" PointY="64" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.HERRAMIENTAS" Width="1.5" PointX="21.75" PointY="81.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.INFO_PAIS" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LEVANTAMIENTO_TECNICO" Width="1.5" PointX="21" PointY="60.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LINEA_NEGOCIO" Width="1.5" PointX="16.5" PointY="79.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LISTA_PRECIOS" Width="1.5" PointX="5.25" PointY="78.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LISTA_PRECIOS_MANO_OBRA" Width="1.5" PointX="32.75" PointY="63.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LISTA_PRECIOS_MATERIAL" Width="1.5" PointX="33.75" PointY="68.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LISTA_PRECIOS_SERVICIO" Width="1.5" PointX="30" PointY="93.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LT_HERRAMIENTAS_OT" Width="1.5" PointX="24" PointY="62.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LT_MANO_OBRA" Width="1.5" PointX="27" PointY="62.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LT_MATERIALES_OT" Width="1.5" PointX="31.25" PointY="68.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LT_SERVICIOS" Width="1.5" PointX="29" PointY="68.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.MANO_OBRA_PLANEADA" Width="1.5" PointX="30" PointY="73.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.MANO_OBRA_REAL" Width="1.5" PointX="30" PointY="63.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.MARCA" Width="1.5" PointX="21.75" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.MARCA_SERVICIO" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.MATERIALES" Width="1.5" PointX="24" PointY="43.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.MUNICIPIO" Width="1.5" PointX="5.25" PointY="82.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.ORDEN_TRABAJO" Width="1.5" PointX="18.75" PointY="65.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.PAIS" Width="1.5" PointX="0.75" PointY="65.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.PLAN_MAESTRO" Width="1.5" PointX="29" PointY="57.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.PROGRAMAS_SISTEMA" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.PROVEEDOR" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.PUESTOS_RECURSOS" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.RECHAZO_MOTIVOS" Width="1.5" PointX="16.5" PointY="82.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.RECURSOS_OT" Width="1.5" PointX="30" PointY="78.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.REGISTRO_ASISTENCIA" Width="1.5" PointX="30" PointY="87.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.REGISTRO_CIERRE" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.SERVICIOS" Width="1.5" PointX="26.75" PointY="95.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.SOLICITUD_MATERIALES" Width="1.5" PointX="26.25" PointY="67.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.SUBETAPA_OT" Width="1.5" PointX="21.75" PointY="55.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.SUCURSAL" Width="1.5" PointX="11.25" PointY="66.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.TIPO_CANALIZACION" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.TIPO_DISTRIBUCION" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.TIPO_MO" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.TIPO_MONEDA" Width="1.5" PointX="25.5" PointY="87.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.TIPO_ORDEN" Width="1.5" PointX="16.5" PointY="85.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.TIPO_PLAFON" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.TIPO_REGISTRO" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.TIPO_SERVICIO" Width="1.5" PointX="16.5" PointY="89.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.UNIDAD_DURACION" Width="1.5" PointX="21.75" PointY="50.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.UNIDAD_MEDIDA" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.UNIDAD_SERVICIO" Width="1.5" PointX="24.5" PointY="97.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.USUARIO" Width="1.5" PointX="8.25" PointY="74.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.USUARIO_SUCURSAL" Width="1.5" PointX="16.5" PointY="71.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.ACCESO" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.AM_SERVICIOS" Width="1.5" PointX="32.25" PointY="73.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.ARCHIVOS_ADJUNTOS" Width="1.5" PointX="21" PointY="126.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.CONSULTA_PREFERENCIAS" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LOCALIDAD" Width="1.5" PointX="3" PointY="79" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.LoginCorrecto" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.PLAN_TRABAJO_OT" Width="1.5" PointX="24" PointY="79.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.PLAN_TRABAJO_OT_HISTORIAL" Width="1.5" PointX="24" PointY="56.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxesoModel.TRANSACCION" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <AssociationConnector Association="AxesoModel.FK_ACOPIO_MATERIALES_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ENTREGA_MATERIALES_ACOPIO_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_SOLICITUD_MATERIALES_ACOPIO_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_AM_MANO_OBRA_ANALISIS_MARGEN" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_AM_MANO_OBRA_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_AM_MATERIALES_ANALISIS_MARGEN" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_AM_MATERIALES_LEVANTAMIENTO_TECNICO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_AM_MATERIALES_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_AM_MATERIALES_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LEVANTAMIENTO_TECNICO_AMBIENTE_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_AMBIENTE_TRABAJO1" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_AM_SERVICIOS_ANALISIS_MARGEN" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ANALISIS_MARGEN_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ANALISIS_MARGEN_TIPO_MONEDA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CALENDARIO_COMPANIA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CALENDARIO_FESTIVO_CALENDARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CALENDARIO_LABORAL_CALENDARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CALENDARIO_NOLABORAL_CALENDARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CALENDARIO_SUCURSAL" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CALENDARIO_FESTIVO_COMPANIA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CALENDARIO_LABORAL_COMPANIA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CALENDARIO_NOLABORAL_COMPANIA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_SERVICIOS_CLASIFICACION_SERVICIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CLIENTE_UBICACION_DEPTO_CLIENTE_UBICACION" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CLIENTE_UBICACION_DEPTO_CLIENTES" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_CLIENTE_UBICACION_DEPTO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CLIENTES_COMPANIA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CLIENTES_EMPRESA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CLIENTES_PAIS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_CLIENTES" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_COMPANIA_PAIS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_EMPRESA_COMPANIA1" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LISTA_PRECIOS_COMPANIA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_COMPANIA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_SUCURSAL_COMPANIA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_USUARIO_COMPANIA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_USUARIO_SUCURSAL_COMPANIA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_DEPARTAMENTO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_DEVOLUCION_MATERIALES_LEVANTAMIENTO_TECNICO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_DEVOLUCION_MATERIALES_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_EMPLEADOS_TIPO_MONEDA1" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_MANO_OBRA_PLANEADA_EMPLEADOS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_MANO_OBRA_REAL_EMPLEADOS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_REGISTRO_ASISTENCIA_EMPLEADOS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_EMPRESA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ENTREGA_MATERIALES_LEVANTAMIENTO_TECNICO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ENTREGA_MATERIALES_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ESTADO_PAIS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_MUNICIPIO_ESTADO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_ESTATUS_OT" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_ETAPA_OT" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_PLAN_MAESTRO_ETAPA_OT" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_PLAN_TRABAJO_OT_ETAPA_OT" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_PLAN_TRABAJO_OT_HISTORIAL_ETAPA_OT" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_SUBETAPA_OT_ETAPA_OT" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_USUARIO_GPO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LT_HERRAMIENTAS_OT_HERRAMIENTAS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LEVANTAMIENTO_TECNICO_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LEVANTAMIENTO_TECNICO_UNIDAD_DURACION" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LT_MATERIALES_OT_LEVANTAMIENTO_TECNICO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_SOLICITUD_MATERIALES_LEVANTAMIENTO_TECNICO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_LINEA_NEGOCIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LISTA_PRECIOS_MANO_OBRA_TIPO_MONEDA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LISTA_PRECIOS_MANO_OBRA_UNIDAD_DURACION" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LISTA_PRECIOS_MATERIAL_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LISTA_PRECIOS_MATERIAL_TIPO_MONEDA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LISTA_PRECIOS_SERVICIO_SERVICIOS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LISTA_PRECIOS_SERVICIO_TIPO_MONEDA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LISTA_PRECIOS_SERVICIO_UNIDAD_SERVICIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LT_HERRAMIENTAS_OT_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LT_MANO_OBRA_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LT_MANO_OBRA_UNIDAD_DURACION" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LT_MATERIALES_OT_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LT_MATERIALES_OT_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LT_SERVICIOS_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LT_SERVICIOS_SERVICIOS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LT_SERVICIOS_UNIDAD_SERVICIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_MANO_OBRA_PLANEADA_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_MANO_OBRA_PLANEADA_UNIDAD_DURACION" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_MANO_OBRA_REAL_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_MANO_OBRA_REAL_UNIDAD_DURACION" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_MATERIALES_MARCA" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_SOLICITUD_MATERIALES_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ARCHIVOS_ADJUNTOS_ORDEN_TRABAJO1" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_RECHAZO_MOTIVOS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_TIPO_ORDEN" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_ORDEN_TRABAJO_TIPO_SERVICIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_PLAN_TRABAJO_OT_HISTORIAL_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_PLAN_TRABAJO_OT_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_RECURSOS_OT_ORDEN_TRABAJO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_LOCALIDAD_PAIS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_SUCURSAL_PAIS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_PLAN_MAESTRO_SUBETAPA_OT" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_PLAN_MAESTRO_UNIDAD_DURACION" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_RECURSOS_OT_UNIDAD_DURACION" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_AM_SERVICIOS_SERVICIOS" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_SERVICIOS_UNIDAD_SERVICIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_PLAN_TRABAJO_OT_HISTORIAL_SUBETAPA_OT" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_PLAN_TRABAJO_OT_HISTORIAL_UNIDAD_DURACION" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_PLAN_TRABAJO_OT_UNIDAD_DURACION" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_AM_SERVICIOS_UNIDAD_SERVICIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_USUARIO_SUCURSAL_USUARIO" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
