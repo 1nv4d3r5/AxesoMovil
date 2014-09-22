@@ -12,6 +12,8 @@ namespace AxesoMovil
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class AxesoEntities : DbContext
     {
@@ -35,7 +37,6 @@ namespace AxesoMovil
         public virtual DbSet<CALENDARIO> CALENDARIO { get; set; }
         public virtual DbSet<CALENDARIO_FESTIVO> CALENDARIO_FESTIVO { get; set; }
         public virtual DbSet<CALENDARIO_LABORAL> CALENDARIO_LABORAL { get; set; }
-        public virtual DbSet<CALENDARIO_NOLABORAL> CALENDARIO_NOLABORAL { get; set; }
         public virtual DbSet<CLASIFICACION_SERVICIO> CLASIFICACION_SERVICIO { get; set; }
         public virtual DbSet<CLIENTE_UBICACION> CLIENTE_UBICACION { get; set; }
         public virtual DbSet<CLIENTE_UBICACION_DEPTO> CLIENTE_UBICACION_DEPTO { get; set; }
@@ -110,5 +111,70 @@ namespace AxesoMovil
         public virtual DbSet<PLAN_TRABAJO_OT> PLAN_TRABAJO_OT { get; set; }
         public virtual DbSet<PLAN_TRABAJO_OT_HISTORIAL> PLAN_TRABAJO_OT_HISTORIAL { get; set; }
         public virtual DbSet<TRANSACCION> TRANSACCION { get; set; }
+    
+        public virtual int sp_UpdatePlanTrabajoOT(Nullable<int> cVE_COMPANIA, Nullable<int> fOLIO_OT, string aCCION, Nullable<int> cVE_ETAPA_OT, Nullable<int> cVE_SUBETAPA_OT, Nullable<int> uSUARIO_RESPONSABLE_SUBETAPA, Nullable<int> pORCENTAJE_AVANCE, Nullable<int> dURACION_ESTIMADA, Nullable<int> cVE_UNIDAD_DURACION, Nullable<System.DateTime> fECHA_INICIO_ESTIMADA, Nullable<System.DateTime> fECHA_FINAL_ESTIMADA, Nullable<int> uSUARIO_ULTIMA_ACTUALIZA, Nullable<System.DateTime> fECHAHORA_ULTIMA_ACTUALIZA, string cOMENTARIOS, string oPERACION)
+        {
+            var cVE_COMPANIAParameter = cVE_COMPANIA.HasValue ?
+                new ObjectParameter("CVE_COMPANIA", cVE_COMPANIA) :
+                new ObjectParameter("CVE_COMPANIA", typeof(int));
+    
+            var fOLIO_OTParameter = fOLIO_OT.HasValue ?
+                new ObjectParameter("FOLIO_OT", fOLIO_OT) :
+                new ObjectParameter("FOLIO_OT", typeof(int));
+    
+            var aCCIONParameter = aCCION != null ?
+                new ObjectParameter("ACCION", aCCION) :
+                new ObjectParameter("ACCION", typeof(string));
+    
+            var cVE_ETAPA_OTParameter = cVE_ETAPA_OT.HasValue ?
+                new ObjectParameter("CVE_ETAPA_OT", cVE_ETAPA_OT) :
+                new ObjectParameter("CVE_ETAPA_OT", typeof(int));
+    
+            var cVE_SUBETAPA_OTParameter = cVE_SUBETAPA_OT.HasValue ?
+                new ObjectParameter("CVE_SUBETAPA_OT", cVE_SUBETAPA_OT) :
+                new ObjectParameter("CVE_SUBETAPA_OT", typeof(int));
+    
+            var uSUARIO_RESPONSABLE_SUBETAPAParameter = uSUARIO_RESPONSABLE_SUBETAPA.HasValue ?
+                new ObjectParameter("USUARIO_RESPONSABLE_SUBETAPA", uSUARIO_RESPONSABLE_SUBETAPA) :
+                new ObjectParameter("USUARIO_RESPONSABLE_SUBETAPA", typeof(int));
+    
+            var pORCENTAJE_AVANCEParameter = pORCENTAJE_AVANCE.HasValue ?
+                new ObjectParameter("PORCENTAJE_AVANCE", pORCENTAJE_AVANCE) :
+                new ObjectParameter("PORCENTAJE_AVANCE", typeof(int));
+    
+            var dURACION_ESTIMADAParameter = dURACION_ESTIMADA.HasValue ?
+                new ObjectParameter("DURACION_ESTIMADA", dURACION_ESTIMADA) :
+                new ObjectParameter("DURACION_ESTIMADA", typeof(int));
+    
+            var cVE_UNIDAD_DURACIONParameter = cVE_UNIDAD_DURACION.HasValue ?
+                new ObjectParameter("CVE_UNIDAD_DURACION", cVE_UNIDAD_DURACION) :
+                new ObjectParameter("CVE_UNIDAD_DURACION", typeof(int));
+    
+            var fECHA_INICIO_ESTIMADAParameter = fECHA_INICIO_ESTIMADA.HasValue ?
+                new ObjectParameter("FECHA_INICIO_ESTIMADA", fECHA_INICIO_ESTIMADA) :
+                new ObjectParameter("FECHA_INICIO_ESTIMADA", typeof(System.DateTime));
+    
+            var fECHA_FINAL_ESTIMADAParameter = fECHA_FINAL_ESTIMADA.HasValue ?
+                new ObjectParameter("FECHA_FINAL_ESTIMADA", fECHA_FINAL_ESTIMADA) :
+                new ObjectParameter("FECHA_FINAL_ESTIMADA", typeof(System.DateTime));
+    
+            var uSUARIO_ULTIMA_ACTUALIZAParameter = uSUARIO_ULTIMA_ACTUALIZA.HasValue ?
+                new ObjectParameter("USUARIO_ULTIMA_ACTUALIZA", uSUARIO_ULTIMA_ACTUALIZA) :
+                new ObjectParameter("USUARIO_ULTIMA_ACTUALIZA", typeof(int));
+    
+            var fECHAHORA_ULTIMA_ACTUALIZAParameter = fECHAHORA_ULTIMA_ACTUALIZA.HasValue ?
+                new ObjectParameter("FECHAHORA_ULTIMA_ACTUALIZA", fECHAHORA_ULTIMA_ACTUALIZA) :
+                new ObjectParameter("FECHAHORA_ULTIMA_ACTUALIZA", typeof(System.DateTime));
+    
+            var cOMENTARIOSParameter = cOMENTARIOS != null ?
+                new ObjectParameter("COMENTARIOS", cOMENTARIOS) :
+                new ObjectParameter("COMENTARIOS", typeof(string));
+    
+            var oPERACIONParameter = oPERACION != null ?
+                new ObjectParameter("OPERACION", oPERACION) :
+                new ObjectParameter("OPERACION", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UpdatePlanTrabajoOT", cVE_COMPANIAParameter, fOLIO_OTParameter, aCCIONParameter, cVE_ETAPA_OTParameter, cVE_SUBETAPA_OTParameter, uSUARIO_RESPONSABLE_SUBETAPAParameter, pORCENTAJE_AVANCEParameter, dURACION_ESTIMADAParameter, cVE_UNIDAD_DURACIONParameter, fECHA_INICIO_ESTIMADAParameter, fECHA_FINAL_ESTIMADAParameter, uSUARIO_ULTIMA_ACTUALIZAParameter, fECHAHORA_ULTIMA_ACTUALIZAParameter, cOMENTARIOSParameter, oPERACIONParameter);
+        }
     }
 }

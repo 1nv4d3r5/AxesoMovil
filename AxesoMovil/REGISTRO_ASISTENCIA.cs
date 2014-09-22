@@ -24,6 +24,7 @@ namespace AxesoMovil
         public System.DateTime FECHAHORA_REGISTRO { get; set; }
         public int USUARIO_ULTIMA_ACTUALIZACION { get; set; }
         public System.DateTime FECHA_ULTIMA_ACTUALIZACION { get; set; }
+        public Nullable<System.DateTime> FECHA { get; set; }
     
         public virtual EMPLEADOS EMPLEADOS { get; set; }
     }

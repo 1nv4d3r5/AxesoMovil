@@ -19,7 +19,6 @@ namespace AxesoMovil
             this.CALENDARIO = new HashSet<CALENDARIO>();
             this.CALENDARIO_FESTIVO = new HashSet<CALENDARIO_FESTIVO>();
             this.CALENDARIO_LABORAL = new HashSet<CALENDARIO_LABORAL>();
-            this.CALENDARIO_NOLABORAL = new HashSet<CALENDARIO_NOLABORAL>();
             this.CLIENTES = new HashSet<CLIENTES>();
             this.EMPRESA = new HashSet<EMPRESA>();
             this.LISTA_PRECIOS = new HashSet<LISTA_PRECIOS>();
@@ -80,7 +79,6 @@ namespace AxesoMovil
         public virtual ICollection<CALENDARIO> CALENDARIO { get; set; }
         public virtual ICollection<CALENDARIO_FESTIVO> CALENDARIO_FESTIVO { get; set; }
         public virtual ICollection<CALENDARIO_LABORAL> CALENDARIO_LABORAL { get; set; }
-        public virtual ICollection<CALENDARIO_NOLABORAL> CALENDARIO_NOLABORAL { get; set; }
         public virtual ICollection<CLIENTES> CLIENTES { get; set; }
         public virtual PAIS PAIS { get; set; }
         public virtual ICollection<EMPRESA> EMPRESA { get; set; }

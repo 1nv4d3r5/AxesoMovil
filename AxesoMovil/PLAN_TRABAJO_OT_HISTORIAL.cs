@@ -33,6 +33,7 @@ namespace AxesoMovil
         public System.DateTime FECHAHORA_ACTUALIZACION { get; set; }
         public int PORCENTAJE_AVANCE_ETAPA { get; set; }
         public string COMENTARIOS { get; set; }
+        public int ID { get; set; }
     
         public virtual ETAPA_OT ETAPA_OT { get; set; }
         public virtual ORDEN_TRABAJO ORDEN_TRABAJO { get; set; }

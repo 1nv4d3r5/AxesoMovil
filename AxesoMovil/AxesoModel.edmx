@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AxesoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AxesoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Axeso.dbo.ACCESO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ACCESO">
@@ -90,6 +90,9 @@ warning 6002: The table/view 'Axeso.dbo.ACCESO' does not have a primary key defi
           <Property Name="DURACION" Type="int" Nullable="false" />
           <Property Name="CVE_TIPO_MONEDA" Type="int" Nullable="false" />
           <Property Name="PRECIO_VENTA_CAPTURA" Type="money" Nullable="false" />
+          <Property Name="TIEMPO_TOTAL_HOMBRE" Type="int" />
+          <Property Name="TIEMPO_PLANEADO" Type="int" />
+          <Property Name="TIEMPO_POR_PROGRAMAR" Type="int" />
         </EntityType>
         <EntityType Name="AM_MATERIALES">
           <Key>
@@ -261,6 +264,10 @@ warning 6002: The table/view 'Axeso.dbo.ARCHIVOS_ADJUNTOS' does not have a prima
           <Property Name="SUELDO_DIARIO" Type="money" Nullable="false" />
           <Property Name="USUARIO_REGISTRO" Type="int" Nullable="false" />
           <Property Name="FECHAHORA_REGISTRO" Type="datetime" Nullable="false" />
+          <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="int" />
+          <Property Name="FECHAHORA_ULTIMA_ACTUALIZACION" Type="datetime" />
+          <Property Name="CVE_UNIDAD_DURACION" Type="int" />
+          <Property Name="DURACION_REAL" Type="int" />
         </EntityType>
         <EntityType Name="CALENDARIO">
           <Key>
@@ -273,6 +280,15 @@ warning 6002: The table/view 'Axeso.dbo.ARCHIVOS_ADJUNTOS' does not have a prima
           <Property Name="CVE_CALENDARIO" Type="int" Nullable="false" />
           <Property Name="DES_CALENDARIO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="OBSERVACIONES" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
+          <Property Name="FECHA_FINAL" Type="date" Nullable="false" />
+          <Property Name="LUNES" Type="bit" Nullable="false" />
+          <Property Name="MARTES" Type="bit" Nullable="false" />
+          <Property Name="MIERCOLES" Type="bit" Nullable="false" />
+          <Property Name="JUEVES" Type="bit" Nullable="false" />
+          <Property Name="VIERNES" Type="bit" Nullable="false" />
+          <Property Name="SABADO" Type="bit" Nullable="false" />
+          <Property Name="DOMINGO" Type="bit" Nullable="false" />
           <Property Name="USUARIO_REGISTRO" Type="int" Nullable="false" />
           <Property Name="FECHAHORA_REGISTRO" Type="datetime" Nullable="false" />
           <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="int" Nullable="false" />
@@ -309,27 +325,6 @@ warning 6002: The table/view 'Axeso.dbo.ARCHIVOS_ADJUNTOS' does not have a prima
           <Property Name="FECHA" Type="date" Nullable="false" />
           <Property Name="DIA_NOLABORAL" Type="bit" Nullable="false" />
           <Property Name="DIA_FESTIVO" Type="bit" Nullable="false" />
-          <Property Name="USUARIO_REGISTRO" Type="int" Nullable="false" />
-          <Property Name="FECHAHORA_REGISTRO" Type="datetime" Nullable="false" />
-          <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="int" Nullable="false" />
-          <Property Name="FECHAHORA_ULTIMA_ACTUALIZACION" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CALENDARIO_NOLABORAL">
-          <Key>
-            <PropertyRef Name="CVE_COMPANIA" />
-            <PropertyRef Name="CVE_SUCURSAL_COMPANIA" />
-            <PropertyRef Name="CVE_CALENDARIO" />
-            <PropertyRef Name="FECHA_NOLABORAL" />
-          </Key>
-          <Property Name="CVE_COMPANIA" Type="int" Nullable="false" />
-          <Property Name="CVE_SUCURSAL_COMPANIA" Type="int" Nullable="false" />
-          <Property Name="CVE_CALENDARIO" Type="int" Nullable="false" />
-          <Property Name="FECHA_NOLABORAL" Type="date" Nullable="false" />
-          <Property Name="DIA_NOLABORAL" Type="bit" Nullable="false" />
-          <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
-          <Property Name="FECHA_FINAL" Type="date" Nullable="false" />
-          <Property Name="SABADO_ACTIVO" Type="bit" Nullable="false" />
-          <Property Name="DOMINGO_ACTIVO" Type="bit" Nullable="false" />
           <Property Name="USUARIO_REGISTRO" Type="int" Nullable="false" />
           <Property Name="FECHAHORA_REGISTRO" Type="datetime" Nullable="false" />
           <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="int" Nullable="false" />
@@ -618,31 +613,6 @@ warning 6002: The table/view 'Axeso.dbo.CONSULTA_PREFERENCIAS' does not have a p
           <Property Name="UTILIDAD_MATERIALES_REAL" Type="bit" Nullable="false" />
           <Property Name="UTILIDAD_SERVICIOS_REAL" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Axeso.dbo.CONTACTOS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="CONTACTOS">
-          <Property Name="CVE_COMPANIA" Type="int" />
-          <Property Name="CVE_SUCURSAL_COMPANIA" Type="int" />
-          <Property Name="CVE_CLIENTE" Type="int" />
-          <Property Name="CVE_CLIENTE_DIVISION" Type="int" />
-          <Property Name="CVE_DEPTO_CLIENTE_DIVISION" Type="int" />
-          <Property Name="CVE_CONTACTO" Type="int" />
-          <Property Name="NOM_CONTACTO" Type="varchar" MaxLength="50" />
-          <Property Name="TEL1_CONTACTO" Type="varchar" MaxLength="13" />
-          <Property Name="EXT1_CONTACTO" Type="varchar" MaxLength="13" />
-          <Property Name="EXT2_CONTATO" Type="varchar" MaxLength="13" />
-          <Property Name="TEL2_CONTACTO" Type="varchar" MaxLength="15" />
-          <Property Name="CEL_CONTACTO" Type="varchar" MaxLength="16" />
-          <Property Name="EMAIL_CONTACTO" Type="varchar" MaxLength="45" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Axeso.dbo.CONTROL_FOLIOS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="CONTROL_FOLIOS">
-          <Property Name="CVE_COMPANIA" Type="int" />
-          <Property Name="CVE_SUCURSAL_COMPANIA" Type="int" />
-          <Property Name="NUM_FOLIO" Type="int" />
-          <Property Name="NUM_CONCEPTO" Type="int" />
-        </EntityType>-->
         <EntityType Name="COSTO_MO">
           <Key>
             <PropertyRef Name="CVE_COMPANIA" />
@@ -1213,21 +1183,12 @@ warning 6002: The table/view 'Axeso.dbo.LoginCorrecto' does not have a primary k
           <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="int" Nullable="false" />
           <Property Name="FECHAHORA_ULTIMA_ACTUALIZACION" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Axeso.dbo.PLAN_TRABAJO_OT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PLAN_TRABAJO_OT">
           <Key>
             <PropertyRef Name="CVE_COMPANIA" />
             <PropertyRef Name="FOLIO_OT" />
             <PropertyRef Name="CVE_ETAPA_OT" />
             <PropertyRef Name="CVE_SUBETAPA_OT" />
-            <PropertyRef Name="DURACION_ESTIMADA" />
-            <PropertyRef Name="CVE_UNIDAD_DURACION" />
-            <PropertyRef Name="USUARIO_REGISTRO" />
-            <PropertyRef Name="FECHAHORA_REGISTRO" />
-            <PropertyRef Name="USUARIO_ULTIMA_ACTUALIZA" />
-            <PropertyRef Name="FECHAHORA_ULTIMA_ACTUALIZA" />
-            <PropertyRef Name="PORCENTAJE_AVANCE_ETAPA" />
           </Key>
           <Property Name="CVE_COMPANIA" Type="int" Nullable="false" />
           <Property Name="FOLIO_OT" Type="int" Nullable="false" />
@@ -1248,22 +1209,9 @@ warning 6002: The table/view 'Axeso.dbo.PLAN_TRABAJO_OT' does not have a primary
           <Property Name="PORCENTAJE_AVANCE_ETAPA" Type="int" Nullable="false" />
           <Property Name="COMENTARIOS" Type="varchar" MaxLength="200" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Axeso.dbo.PLAN_TRABAJO_OT_HISTORIAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PLAN_TRABAJO_OT_HISTORIAL">
           <Key>
-            <PropertyRef Name="CVE_COMPANIA" />
-            <PropertyRef Name="FOLIO_OT" />
-            <PropertyRef Name="ACCION" />
-            <PropertyRef Name="CVE_ETAPA_OT" />
-            <PropertyRef Name="CVE_SUBETAPA_OT" />
-            <PropertyRef Name="DURACION_ESTIMADA" />
-            <PropertyRef Name="CVE_UNIDAD_DURACION" />
-            <PropertyRef Name="USUARIO_REGISTRO" />
-            <PropertyRef Name="FECHAHORA_USUARIO_REGISTRO" />
-            <PropertyRef Name="USUARIO_ACTUALIZACION" />
-            <PropertyRef Name="FECHAHORA_ACTUALIZACION" />
-            <PropertyRef Name="PORCENTAJE_AVANCE_ETAPA" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="CVE_COMPANIA" Type="int" Nullable="false" />
           <Property Name="FOLIO_OT" Type="int" Nullable="false" />
@@ -1284,6 +1232,7 @@ warning 6002: The table/view 'Axeso.dbo.PLAN_TRABAJO_OT_HISTORIAL' does not have
           <Property Name="FECHAHORA_ACTUALIZACION" Type="datetime" Nullable="false" />
           <Property Name="PORCENTAJE_AVANCE_ETAPA" Type="int" Nullable="false" />
           <Property Name="COMENTARIOS" Type="varchar" MaxLength="200" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="PROGRAMAS_SISTEMA">
           <Key>
@@ -1364,6 +1313,7 @@ warning 6002: The table/view 'Axeso.dbo.PLAN_TRABAJO_OT_HISTORIAL' does not have
           <Property Name="CVE_TIPO_REGISTRO" Type="int" Nullable="false" />
           <Property Name="CVE_PUESTO" Type="int" Nullable="false" />
           <Property Name="SUELDO_DIARIO" Type="money" Nullable="false" />
+          <Property Name="FECHA" Type="date" />
           <Property Name="USUARIO_REGISTRO" Type="int" Nullable="false" />
           <Property Name="FECHAHORA_REGISTRO" Type="datetime" Nullable="false" />
           <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="int" Nullable="false" />
@@ -1477,12 +1427,6 @@ warning 6002: The table/view 'Axeso.dbo.PLAN_TRABAJO_OT_HISTORIAL' does not have
           <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="int" Nullable="false" />
           <Property Name="FECHAHORA_ULTIMA_ACTUALIZACION" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Axeso.dbo.TIPO_CATEGORIA' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="TIPO_CATEGORIA">
-          <Property Name="CVE_TIPO_CATEGORIA" Type="int" />
-          <Property Name="DESCRIPCION_TIPO_CATEGORIA" Type="varchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="TIPO_DISTRIBUCION">
           <Key>
             <PropertyRef Name="CVE_COMPANIA" />
@@ -1910,34 +1854,6 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CALENDARIO_NOLABORAL_CALENDARIO">
-          <End Role="CALENDARIO" Type="Self.CALENDARIO" Multiplicity="1" />
-          <End Role="CALENDARIO_NOLABORAL" Type="Self.CALENDARIO_NOLABORAL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CALENDARIO">
-              <PropertyRef Name="CVE_COMPANIA" />
-              <PropertyRef Name="CVE_SUCURSAL" />
-              <PropertyRef Name="CVE_CALENDARIO" />
-            </Principal>
-            <Dependent Role="CALENDARIO_NOLABORAL">
-              <PropertyRef Name="CVE_COMPANIA" />
-              <PropertyRef Name="CVE_SUCURSAL_COMPANIA" />
-              <PropertyRef Name="CVE_CALENDARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CALENDARIO_NOLABORAL_COMPANIA">
-          <End Role="COMPANIA" Type="Self.COMPANIA" Multiplicity="1" />
-          <End Role="CALENDARIO_NOLABORAL" Type="Self.CALENDARIO_NOLABORAL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COMPANIA">
-              <PropertyRef Name="CVE_COMPANIA" />
-            </Principal>
-            <Dependent Role="CALENDARIO_NOLABORAL">
-              <PropertyRef Name="CVE_COMPANIA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CALENDARIO_SUCURSAL">
           <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
           <End Role="CALENDARIO" Type="Self.CALENDARIO" Multiplicity="*" />
@@ -2032,12 +1948,6 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_CONTACTOS_CLIENTES" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_CONTACTOS_SUCURSAL" />-->
         <Association Name="FK_DEVOLUCION_MATERIALES_LEVANTAMIENTO_TECNICO">
           <End Role="LEVANTAMIENTO_TECNICO" Type="Self.LEVANTAMIENTO_TECNICO" Multiplicity="1" />
           <End Role="DEVOLUCION_MATERIALES" Type="Self.DEVOLUCION_MATERIALES" Multiplicity="*" />
@@ -3082,6 +2992,23 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_UpdatePlanTrabajoOT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CVE_COMPANIA" Type="int" Mode="In" />
+          <Parameter Name="FOLIO_OT" Type="int" Mode="In" />
+          <Parameter Name="ACCION" Type="varchar" Mode="In" />
+          <Parameter Name="CVE_ETAPA_OT" Type="int" Mode="In" />
+          <Parameter Name="CVE_SUBETAPA_OT" Type="int" Mode="In" />
+          <Parameter Name="USUARIO_RESPONSABLE_SUBETAPA" Type="int" Mode="In" />
+          <Parameter Name="PORCENTAJE_AVANCE" Type="int" Mode="In" />
+          <Parameter Name="DURACION_ESTIMADA" Type="int" Mode="In" />
+          <Parameter Name="CVE_UNIDAD_DURACION" Type="int" Mode="In" />
+          <Parameter Name="FECHA_INICIO_ESTIMADA" Type="datetime" Mode="In" />
+          <Parameter Name="FECHA_FINAL_ESTIMADA" Type="datetime" Mode="In" />
+          <Parameter Name="USUARIO_ULTIMA_ACTUALIZA" Type="int" Mode="In" />
+          <Parameter Name="FECHAHORA_ULTIMA_ACTUALIZA" Type="datetime" Mode="In" />
+          <Parameter Name="COMENTARIOS" Type="varchar" Mode="In" />
+          <Parameter Name="OPERACION" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="AxesoModelStoreContainer">
           <EntitySet Name="ACOPIO_MATERIALES" EntityType="Self.ACOPIO_MATERIALES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AM_CONDICION_COMERCIAL" EntityType="Self.AM_CONDICION_COMERCIAL" Schema="dbo" store:Type="Tables" />
@@ -3093,7 +3020,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <EntitySet Name="CALENDARIO" EntityType="Self.CALENDARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CALENDARIO_FESTIVO" EntityType="Self.CALENDARIO_FESTIVO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CALENDARIO_LABORAL" EntityType="Self.CALENDARIO_LABORAL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CALENDARIO_NOLABORAL" EntityType="Self.CALENDARIO_NOLABORAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLASIFICACION_SERVICIO" EntityType="Self.CLASIFICACION_SERVICIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLIENTE_UBICACION" EntityType="Self.CLIENTE_UBICACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLIENTE_UBICACION_DEPTO" EntityType="Self.CLIENTE_UBICACION_DEPTO" Schema="dbo" store:Type="Tables" />
@@ -3135,6 +3061,8 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <EntitySet Name="ORDEN_TRABAJO" EntityType="Self.ORDEN_TRABAJO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAIS" EntityType="Self.PAIS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PLAN_MAESTRO" EntityType="Self.PLAN_MAESTRO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLAN_TRABAJO_OT" EntityType="Self.PLAN_TRABAJO_OT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLAN_TRABAJO_OT_HISTORIAL" EntityType="Self.PLAN_TRABAJO_OT_HISTORIAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROGRAMAS_SISTEMA" EntityType="Self.PROGRAMAS_SISTEMA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PUESTOS_RECURSOS" EntityType="Self.PUESTOS_RECURSOS" Schema="dbo" store:Type="Tables" />
@@ -3279,51 +3207,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
     [LoginCorrecto].[Sucursal] AS [Sucursal]
     FROM [dbo].[LoginCorrecto] AS [LoginCorrecto]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="PLAN_TRABAJO_OT" EntityType="Self.PLAN_TRABAJO_OT" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [PLAN_TRABAJO_OT].[CVE_COMPANIA] AS [CVE_COMPANIA], 
-    [PLAN_TRABAJO_OT].[FOLIO_OT] AS [FOLIO_OT], 
-    [PLAN_TRABAJO_OT].[CVE_ETAPA_OT] AS [CVE_ETAPA_OT], 
-    [PLAN_TRABAJO_OT].[CVE_SUBETAPA_OT] AS [CVE_SUBETAPA_OT], 
-    [PLAN_TRABAJO_OT].[DURACION_ESTIMADA] AS [DURACION_ESTIMADA], 
-    [PLAN_TRABAJO_OT].[CVE_UNIDAD_DURACION] AS [CVE_UNIDAD_DURACION], 
-    [PLAN_TRABAJO_OT].[PORCENTAJE_AVANCE] AS [PORCENTAJE_AVANCE], 
-    [PLAN_TRABAJO_OT].[USUARIO_RESPONSABLE_SUBETAPA] AS [USUARIO_RESPONSABLE_SUBETAPA], 
-    [PLAN_TRABAJO_OT].[FECHA_INICIO_ESTIMADA] AS [FECHA_INICIO_ESTIMADA], 
-    [PLAN_TRABAJO_OT].[FECHA_FINAL_ESTIMADA] AS [FECHA_FINAL_ESTIMADA], 
-    [PLAN_TRABAJO_OT].[FECHA_INICIO_REAL] AS [FECHA_INICIO_REAL], 
-    [PLAN_TRABAJO_OT].[FECHA_FINAL_REAL] AS [FECHA_FINAL_REAL], 
-    [PLAN_TRABAJO_OT].[USUARIO_REGISTRO] AS [USUARIO_REGISTRO], 
-    [PLAN_TRABAJO_OT].[FECHAHORA_REGISTRO] AS [FECHAHORA_REGISTRO], 
-    [PLAN_TRABAJO_OT].[USUARIO_ULTIMA_ACTUALIZA] AS [USUARIO_ULTIMA_ACTUALIZA], 
-    [PLAN_TRABAJO_OT].[FECHAHORA_ULTIMA_ACTUALIZA] AS [FECHAHORA_ULTIMA_ACTUALIZA], 
-    [PLAN_TRABAJO_OT].[PORCENTAJE_AVANCE_ETAPA] AS [PORCENTAJE_AVANCE_ETAPA], 
-    [PLAN_TRABAJO_OT].[COMENTARIOS] AS [COMENTARIOS]
-    FROM [dbo].[PLAN_TRABAJO_OT] AS [PLAN_TRABAJO_OT]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="PLAN_TRABAJO_OT_HISTORIAL" EntityType="Self.PLAN_TRABAJO_OT_HISTORIAL" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [PLAN_TRABAJO_OT_HISTORIAL].[CVE_COMPANIA] AS [CVE_COMPANIA], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[FOLIO_OT] AS [FOLIO_OT], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[ACCION] AS [ACCION], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[CVE_ETAPA_OT] AS [CVE_ETAPA_OT], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[CVE_SUBETAPA_OT] AS [CVE_SUBETAPA_OT], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[DURACION_ESTIMADA] AS [DURACION_ESTIMADA], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[CVE_UNIDAD_DURACION] AS [CVE_UNIDAD_DURACION], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[PORCENTAJE_AVANCE] AS [PORCENTAJE_AVANCE], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[USUARIO_RESPONSABLE_SUBETAPA] AS [USUARIO_RESPONSABLE_SUBETAPA], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[FECHA_INICIO_ESTIMADA] AS [FECHA_INICIO_ESTIMADA], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[FECHA_FINAL_ESTIMADA] AS [FECHA_FINAL_ESTIMADA], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[FECHA_INICIO_REAL] AS [FECHA_INICIO_REAL], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[FECHA_FINAL_REAL] AS [FECHA_FINAL_REAL], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[USUARIO_REGISTRO] AS [USUARIO_REGISTRO], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[FECHAHORA_USUARIO_REGISTRO] AS [FECHAHORA_USUARIO_REGISTRO], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[USUARIO_ACTUALIZACION] AS [USUARIO_ACTUALIZACION], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[FECHAHORA_ACTUALIZACION] AS [FECHAHORA_ACTUALIZACION], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[PORCENTAJE_AVANCE_ETAPA] AS [PORCENTAJE_AVANCE_ETAPA], 
-    [PLAN_TRABAJO_OT_HISTORIAL].[COMENTARIOS] AS [COMENTARIOS]
-    FROM [dbo].[PLAN_TRABAJO_OT_HISTORIAL] AS [PLAN_TRABAJO_OT_HISTORIAL]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="TRANSACCION" EntityType="Self.TRANSACCION" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [TRANSACCION].[CVE_TRANSACCION] AS [CVE_TRANSACCION], 
@@ -3402,14 +3285,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <AssociationSet Name="FK_CALENDARIO_LABORAL_COMPANIA" Association="Self.FK_CALENDARIO_LABORAL_COMPANIA">
             <End Role="COMPANIA" EntitySet="COMPANIA" />
             <End Role="CALENDARIO_LABORAL" EntitySet="CALENDARIO_LABORAL" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CALENDARIO_NOLABORAL_CALENDARIO" Association="Self.FK_CALENDARIO_NOLABORAL_CALENDARIO">
-            <End Role="CALENDARIO" EntitySet="CALENDARIO" />
-            <End Role="CALENDARIO_NOLABORAL" EntitySet="CALENDARIO_NOLABORAL" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CALENDARIO_NOLABORAL_COMPANIA" Association="Self.FK_CALENDARIO_NOLABORAL_COMPANIA">
-            <End Role="COMPANIA" EntitySet="COMPANIA" />
-            <End Role="CALENDARIO_NOLABORAL" EntitySet="CALENDARIO_NOLABORAL" />
           </AssociationSet>
           <AssociationSet Name="FK_CALENDARIO_SUCURSAL" Association="Self.FK_CALENDARIO_SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
@@ -3740,8 +3615,7 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
             <End Role="USUARIO_SUCURSAL" EntitySet="USUARIO_SUCURSAL" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AxesoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -3820,6 +3694,9 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <Property Name="PRECIO_VENTA_CAPTURA" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="ANALISIS_MARGEN" Relationship="Self.FK_AM_MANO_OBRA_ANALISIS_MARGEN" FromRole="AM_MANO_OBRA" ToRole="ANALISIS_MARGEN" />
           <NavigationProperty Name="ORDEN_TRABAJO" Relationship="Self.FK_AM_MANO_OBRA_ORDEN_TRABAJO" FromRole="AM_MANO_OBRA" ToRole="ORDEN_TRABAJO" />
+          <Property Name="TIEMPO_TOTAL_HOMBRE" Type="Int32" />
+          <Property Name="TIEMPO_PLANEADO" Type="Int32" />
+          <Property Name="TIEMPO_POR_PROGRAMAR" Type="Int32" />
         </EntityType>
         <EntityType Name="AM_MATERIALES">
           <Key>
@@ -3930,6 +3807,10 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <Property Name="SUELDO_DIARIO" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="USUARIO_REGISTRO" Type="Int32" Nullable="false" />
           <Property Name="FECHAHORA_REGISTRO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="Int32" />
+          <Property Name="FECHAHORA_ULTIMA_ACTUALIZACION" Type="DateTime" Precision="3" />
+          <Property Name="CVE_UNIDAD_DURACION" Type="Int32" />
+          <Property Name="DURACION_REAL" Type="Int32" />
         </EntityType>
         <EntityType Name="CALENDARIO">
           <Key>
@@ -3949,8 +3830,16 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <NavigationProperty Name="COMPANIA" Relationship="Self.FK_CALENDARIO_COMPANIA" FromRole="CALENDARIO" ToRole="COMPANIA" />
           <NavigationProperty Name="CALENDARIO_FESTIVO" Relationship="Self.FK_CALENDARIO_FESTIVO_CALENDARIO" FromRole="CALENDARIO" ToRole="CALENDARIO_FESTIVO" />
           <NavigationProperty Name="CALENDARIO_LABORAL" Relationship="Self.FK_CALENDARIO_LABORAL_CALENDARIO" FromRole="CALENDARIO" ToRole="CALENDARIO_LABORAL" />
-          <NavigationProperty Name="CALENDARIO_NOLABORAL" Relationship="Self.FK_CALENDARIO_NOLABORAL_CALENDARIO" FromRole="CALENDARIO" ToRole="CALENDARIO_NOLABORAL" />
           <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_CALENDARIO_SUCURSAL" FromRole="CALENDARIO" ToRole="SUCURSAL" />
+          <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FECHA_FINAL" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LUNES" Type="Boolean" Nullable="false" />
+          <Property Name="MARTES" Type="Boolean" Nullable="false" />
+          <Property Name="MIERCOLES" Type="Boolean" Nullable="false" />
+          <Property Name="JUEVES" Type="Boolean" Nullable="false" />
+          <Property Name="VIERNES" Type="Boolean" Nullable="false" />
+          <Property Name="SABADO" Type="Boolean" Nullable="false" />
+          <Property Name="DOMINGO" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="CALENDARIO_FESTIVO">
           <Key>
@@ -3991,29 +3880,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <Property Name="FECHAHORA_ULTIMA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CALENDARIO" Relationship="Self.FK_CALENDARIO_LABORAL_CALENDARIO" FromRole="CALENDARIO_LABORAL" ToRole="CALENDARIO" />
           <NavigationProperty Name="COMPANIA" Relationship="Self.FK_CALENDARIO_LABORAL_COMPANIA" FromRole="CALENDARIO_LABORAL" ToRole="COMPANIA" />
-        </EntityType>
-        <EntityType Name="CALENDARIO_NOLABORAL">
-          <Key>
-            <PropertyRef Name="CVE_COMPANIA" />
-            <PropertyRef Name="CVE_SUCURSAL_COMPANIA" />
-            <PropertyRef Name="CVE_CALENDARIO" />
-            <PropertyRef Name="FECHA_NOLABORAL" />
-          </Key>
-          <Property Name="CVE_COMPANIA" Type="Int32" Nullable="false" />
-          <Property Name="CVE_SUCURSAL_COMPANIA" Type="Int32" Nullable="false" />
-          <Property Name="CVE_CALENDARIO" Type="Int32" Nullable="false" />
-          <Property Name="FECHA_NOLABORAL" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DIA_NOLABORAL" Type="Boolean" Nullable="false" />
-          <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FECHA_FINAL" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="SABADO_ACTIVO" Type="Boolean" Nullable="false" />
-          <Property Name="DOMINGO_ACTIVO" Type="Boolean" Nullable="false" />
-          <Property Name="USUARIO_REGISTRO" Type="Int32" Nullable="false" />
-          <Property Name="FECHAHORA_REGISTRO" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="Int32" Nullable="false" />
-          <Property Name="FECHAHORA_ULTIMA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="CALENDARIO" Relationship="Self.FK_CALENDARIO_NOLABORAL_CALENDARIO" FromRole="CALENDARIO_NOLABORAL" ToRole="CALENDARIO" />
-          <NavigationProperty Name="COMPANIA" Relationship="Self.FK_CALENDARIO_NOLABORAL_COMPANIA" FromRole="CALENDARIO_NOLABORAL" ToRole="COMPANIA" />
         </EntityType>
         <EntityType Name="CLASIFICACION_SERVICIO">
           <Key>
@@ -4171,7 +4037,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <NavigationProperty Name="CALENDARIO" Relationship="Self.FK_CALENDARIO_COMPANIA" FromRole="COMPANIA" ToRole="CALENDARIO" />
           <NavigationProperty Name="CALENDARIO_FESTIVO" Relationship="Self.FK_CALENDARIO_FESTIVO_COMPANIA" FromRole="COMPANIA" ToRole="CALENDARIO_FESTIVO" />
           <NavigationProperty Name="CALENDARIO_LABORAL" Relationship="Self.FK_CALENDARIO_LABORAL_COMPANIA" FromRole="COMPANIA" ToRole="CALENDARIO_LABORAL" />
-          <NavigationProperty Name="CALENDARIO_NOLABORAL" Relationship="Self.FK_CALENDARIO_NOLABORAL_COMPANIA" FromRole="COMPANIA" ToRole="CALENDARIO_NOLABORAL" />
           <NavigationProperty Name="CLIENTES" Relationship="Self.FK_CLIENTES_COMPANIA" FromRole="COMPANIA" ToRole="CLIENTES" />
           <NavigationProperty Name="PAIS" Relationship="Self.FK_COMPANIA_PAIS" FromRole="COMPANIA" ToRole="PAIS" />
           <NavigationProperty Name="EMPRESA" Relationship="Self.FK_EMPRESA_COMPANIA1" FromRole="COMPANIA" ToRole="EMPRESA" />
@@ -4953,6 +4818,7 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="Int32" Nullable="false" />
           <Property Name="FECHA_ULTIMA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_REGISTRO_ASISTENCIA_EMPLEADOS" FromRole="REGISTRO_ASISTENCIA" ToRole="EMPLEADOS" />
+          <Property Name="FECHA" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="REGISTRO_CIERRE">
           <Key>
@@ -5472,13 +5338,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
             <PropertyRef Name="FOLIO_OT" />
             <PropertyRef Name="CVE_ETAPA_OT" />
             <PropertyRef Name="CVE_SUBETAPA_OT" />
-            <PropertyRef Name="DURACION_ESTIMADA" />
-            <PropertyRef Name="CVE_UNIDAD_DURACION" />
-            <PropertyRef Name="USUARIO_REGISTRO" />
-            <PropertyRef Name="FECHAHORA_REGISTRO" />
-            <PropertyRef Name="USUARIO_ULTIMA_ACTUALIZA" />
-            <PropertyRef Name="FECHAHORA_ULTIMA_ACTUALIZA" />
-            <PropertyRef Name="PORCENTAJE_AVANCE_ETAPA" />
           </Key>
           <Property Name="CVE_COMPANIA" Type="Int32" Nullable="false" />
           <Property Name="FOLIO_OT" Type="Int32" Nullable="false" />
@@ -5504,18 +5363,7 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
         </EntityType>
         <EntityType Name="PLAN_TRABAJO_OT_HISTORIAL">
           <Key>
-            <PropertyRef Name="CVE_COMPANIA" />
-            <PropertyRef Name="FOLIO_OT" />
-            <PropertyRef Name="ACCION" />
-            <PropertyRef Name="CVE_ETAPA_OT" />
-            <PropertyRef Name="CVE_SUBETAPA_OT" />
-            <PropertyRef Name="DURACION_ESTIMADA" />
-            <PropertyRef Name="CVE_UNIDAD_DURACION" />
-            <PropertyRef Name="USUARIO_REGISTRO" />
-            <PropertyRef Name="FECHAHORA_USUARIO_REGISTRO" />
-            <PropertyRef Name="USUARIO_ACTUALIZACION" />
-            <PropertyRef Name="FECHAHORA_ACTUALIZACION" />
-            <PropertyRef Name="PORCENTAJE_AVANCE_ETAPA" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="CVE_COMPANIA" Type="Int32" Nullable="false" />
           <Property Name="FOLIO_OT" Type="Int32" Nullable="false" />
@@ -5540,6 +5388,7 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <NavigationProperty Name="ORDEN_TRABAJO" Relationship="Self.FK_PLAN_TRABAJO_OT_HISTORIAL_ORDEN_TRABAJO" FromRole="PLAN_TRABAJO_OT_HISTORIAL" ToRole="ORDEN_TRABAJO" />
           <NavigationProperty Name="SUBETAPA_OT" Relationship="Self.FK_PLAN_TRABAJO_OT_HISTORIAL_SUBETAPA_OT" FromRole="PLAN_TRABAJO_OT_HISTORIAL" ToRole="SUBETAPA_OT" />
           <NavigationProperty Name="UNIDAD_DURACION" Relationship="Self.FK_PLAN_TRABAJO_OT_HISTORIAL_UNIDAD_DURACION" FromRole="PLAN_TRABAJO_OT_HISTORIAL" ToRole="UNIDAD_DURACION" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="TRANSACCION">
           <Key>
@@ -5799,22 +5648,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CALENDARIO_NOLABORAL_CALENDARIO">
-          <End Role="CALENDARIO" Type="Self.CALENDARIO" Multiplicity="1" />
-          <End Role="CALENDARIO_NOLABORAL" Type="Self.CALENDARIO_NOLABORAL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CALENDARIO">
-              <PropertyRef Name="CVE_COMPANIA" />
-              <PropertyRef Name="CVE_SUCURSAL" />
-              <PropertyRef Name="CVE_CALENDARIO" />
-            </Principal>
-            <Dependent Role="CALENDARIO_NOLABORAL">
-              <PropertyRef Name="CVE_COMPANIA" />
-              <PropertyRef Name="CVE_SUCURSAL_COMPANIA" />
-              <PropertyRef Name="CVE_CALENDARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CALENDARIO_SUCURSAL">
           <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
           <End Role="CALENDARIO" Type="Self.CALENDARIO" Multiplicity="*" />
@@ -5849,18 +5682,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
               <PropertyRef Name="CVE_COMPANIA" />
             </Principal>
             <Dependent Role="CALENDARIO_LABORAL">
-              <PropertyRef Name="CVE_COMPANIA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CALENDARIO_NOLABORAL_COMPANIA">
-          <End Role="COMPANIA" Type="Self.COMPANIA" Multiplicity="1" />
-          <End Role="CALENDARIO_NOLABORAL" Type="Self.CALENDARIO_NOLABORAL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COMPANIA">
-              <PropertyRef Name="CVE_COMPANIA" />
-            </Principal>
-            <Dependent Role="CALENDARIO_NOLABORAL">
               <PropertyRef Name="CVE_COMPANIA" />
             </Dependent>
           </ReferentialConstraint>
@@ -6982,7 +6803,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <EntitySet Name="CALENDARIO" EntityType="Self.CALENDARIO" />
           <EntitySet Name="CALENDARIO_FESTIVO" EntityType="Self.CALENDARIO_FESTIVO" />
           <EntitySet Name="CALENDARIO_LABORAL" EntityType="Self.CALENDARIO_LABORAL" />
-          <EntitySet Name="CALENDARIO_NOLABORAL" EntityType="Self.CALENDARIO_NOLABORAL" />
           <EntitySet Name="CLASIFICACION_SERVICIO" EntityType="Self.CLASIFICACION_SERVICIO" />
           <EntitySet Name="CLIENTE_UBICACION" EntityType="Self.CLIENTE_UBICACION" />
           <EntitySet Name="CLIENTE_UBICACION_DEPTO" EntityType="Self.CLIENTE_UBICACION_DEPTO" />
@@ -7125,10 +6945,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
             <End Role="CALENDARIO" EntitySet="CALENDARIO" />
             <End Role="CALENDARIO_LABORAL" EntitySet="CALENDARIO_LABORAL" />
           </AssociationSet>
-          <AssociationSet Name="FK_CALENDARIO_NOLABORAL_CALENDARIO" Association="Self.FK_CALENDARIO_NOLABORAL_CALENDARIO">
-            <End Role="CALENDARIO" EntitySet="CALENDARIO" />
-            <End Role="CALENDARIO_NOLABORAL" EntitySet="CALENDARIO_NOLABORAL" />
-          </AssociationSet>
           <AssociationSet Name="FK_CALENDARIO_SUCURSAL" Association="Self.FK_CALENDARIO_SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
             <End Role="CALENDARIO" EntitySet="CALENDARIO" />
@@ -7140,10 +6956,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <AssociationSet Name="FK_CALENDARIO_LABORAL_COMPANIA" Association="Self.FK_CALENDARIO_LABORAL_COMPANIA">
             <End Role="COMPANIA" EntitySet="COMPANIA" />
             <End Role="CALENDARIO_LABORAL" EntitySet="CALENDARIO_LABORAL" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CALENDARIO_NOLABORAL_COMPANIA" Association="Self.FK_CALENDARIO_NOLABORAL_COMPANIA">
-            <End Role="COMPANIA" EntitySet="COMPANIA" />
-            <End Role="CALENDARIO_NOLABORAL" EntitySet="CALENDARIO_NOLABORAL" />
           </AssociationSet>
           <AssociationSet Name="FK_SERVICIOS_CLASIFICACION_SERVICIO" Association="Self.FK_SERVICIOS_CLASIFICACION_SERVICIO">
             <End Role="CLASIFICACION_SERVICIO" EntitySet="CLASIFICACION_SERVICIO" />
@@ -7465,6 +7277,23 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="USUARIO_SUCURSAL" EntitySet="USUARIO_SUCURSAL" />
           </AssociationSet>
+          <FunctionImport Name="sp_UpdatePlanTrabajoOT">
+            <Parameter Name="CVE_COMPANIA" Mode="In" Type="Int32" />
+            <Parameter Name="FOLIO_OT" Mode="In" Type="Int32" />
+            <Parameter Name="ACCION" Mode="In" Type="String" />
+            <Parameter Name="CVE_ETAPA_OT" Mode="In" Type="Int32" />
+            <Parameter Name="CVE_SUBETAPA_OT" Mode="In" Type="Int32" />
+            <Parameter Name="USUARIO_RESPONSABLE_SUBETAPA" Mode="In" Type="Int32" />
+            <Parameter Name="PORCENTAJE_AVANCE" Mode="In" Type="Int32" />
+            <Parameter Name="DURACION_ESTIMADA" Mode="In" Type="Int32" />
+            <Parameter Name="CVE_UNIDAD_DURACION" Mode="In" Type="Int32" />
+            <Parameter Name="FECHA_INICIO_ESTIMADA" Mode="In" Type="DateTime" />
+            <Parameter Name="FECHA_FINAL_ESTIMADA" Mode="In" Type="DateTime" />
+            <Parameter Name="USUARIO_ULTIMA_ACTUALIZA" Mode="In" Type="Int32" />
+            <Parameter Name="FECHAHORA_ULTIMA_ACTUALIZA" Mode="In" Type="DateTime" />
+            <Parameter Name="COMENTARIOS" Mode="In" Type="String" />
+            <Parameter Name="OPERACION" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -7510,6 +7339,9 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <EntitySetMapping Name="AM_MANO_OBRA">
             <EntityTypeMapping TypeName="AxesoModel.AM_MANO_OBRA">
               <MappingFragment StoreEntitySet="AM_MANO_OBRA">
+                <ScalarProperty Name="TIEMPO_POR_PROGRAMAR" ColumnName="TIEMPO_POR_PROGRAMAR" />
+                <ScalarProperty Name="TIEMPO_PLANEADO" ColumnName="TIEMPO_PLANEADO" />
+                <ScalarProperty Name="TIEMPO_TOTAL_HOMBRE" ColumnName="TIEMPO_TOTAL_HOMBRE" />
                 <ScalarProperty Name="CVE_COMPANIA" ColumnName="CVE_COMPANIA" />
                 <ScalarProperty Name="FOLIO_OT" ColumnName="FOLIO_OT" />
                 <ScalarProperty Name="FOLIO_AM" ColumnName="FOLIO_AM" />
@@ -7618,6 +7450,10 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <EntitySetMapping Name="ASIGNA_PERSONAL_OT">
             <EntityTypeMapping TypeName="AxesoModel.ASIGNA_PERSONAL_OT">
               <MappingFragment StoreEntitySet="ASIGNA_PERSONAL_OT">
+                <ScalarProperty Name="DURACION_REAL" ColumnName="DURACION_REAL" />
+                <ScalarProperty Name="CVE_UNIDAD_DURACION" ColumnName="CVE_UNIDAD_DURACION" />
+                <ScalarProperty Name="FECHAHORA_ULTIMA_ACTUALIZACION" ColumnName="FECHAHORA_ULTIMA_ACTUALIZACION" />
+                <ScalarProperty Name="USUARIO_ULTIMA_ACTUALIZACION" ColumnName="USUARIO_ULTIMA_ACTUALIZACION" />
                 <ScalarProperty Name="CVE_COMPANIA" ColumnName="CVE_COMPANIA" />
                 <ScalarProperty Name="NUM_NOMINA" ColumnName="NUM_NOMINA" />
                 <ScalarProperty Name="FOLIO_OT" ColumnName="FOLIO_OT" />
@@ -7633,6 +7469,15 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <EntitySetMapping Name="CALENDARIO">
             <EntityTypeMapping TypeName="AxesoModel.CALENDARIO">
               <MappingFragment StoreEntitySet="CALENDARIO">
+                <ScalarProperty Name="DOMINGO" ColumnName="DOMINGO" />
+                <ScalarProperty Name="SABADO" ColumnName="SABADO" />
+                <ScalarProperty Name="VIERNES" ColumnName="VIERNES" />
+                <ScalarProperty Name="JUEVES" ColumnName="JUEVES" />
+                <ScalarProperty Name="MIERCOLES" ColumnName="MIERCOLES" />
+                <ScalarProperty Name="MARTES" ColumnName="MARTES" />
+                <ScalarProperty Name="LUNES" ColumnName="LUNES" />
+                <ScalarProperty Name="FECHA_FINAL" ColumnName="FECHA_FINAL" />
+                <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
                 <ScalarProperty Name="CVE_COMPANIA" ColumnName="CVE_COMPANIA" />
                 <ScalarProperty Name="CVE_SUCURSAL" ColumnName="CVE_SUCURSAL" />
                 <ScalarProperty Name="CVE_CALENDARIO" ColumnName="CVE_CALENDARIO" />
@@ -7670,25 +7515,6 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
                 <ScalarProperty Name="FECHA" ColumnName="FECHA" />
                 <ScalarProperty Name="DIA_NOLABORAL" ColumnName="DIA_NOLABORAL" />
                 <ScalarProperty Name="DIA_FESTIVO" ColumnName="DIA_FESTIVO" />
-                <ScalarProperty Name="USUARIO_REGISTRO" ColumnName="USUARIO_REGISTRO" />
-                <ScalarProperty Name="FECHAHORA_REGISTRO" ColumnName="FECHAHORA_REGISTRO" />
-                <ScalarProperty Name="USUARIO_ULTIMA_ACTUALIZACION" ColumnName="USUARIO_ULTIMA_ACTUALIZACION" />
-                <ScalarProperty Name="FECHAHORA_ULTIMA_ACTUALIZACION" ColumnName="FECHAHORA_ULTIMA_ACTUALIZACION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CALENDARIO_NOLABORAL">
-            <EntityTypeMapping TypeName="AxesoModel.CALENDARIO_NOLABORAL">
-              <MappingFragment StoreEntitySet="CALENDARIO_NOLABORAL">
-                <ScalarProperty Name="CVE_COMPANIA" ColumnName="CVE_COMPANIA" />
-                <ScalarProperty Name="CVE_SUCURSAL_COMPANIA" ColumnName="CVE_SUCURSAL_COMPANIA" />
-                <ScalarProperty Name="CVE_CALENDARIO" ColumnName="CVE_CALENDARIO" />
-                <ScalarProperty Name="FECHA_NOLABORAL" ColumnName="FECHA_NOLABORAL" />
-                <ScalarProperty Name="DIA_NOLABORAL" ColumnName="DIA_NOLABORAL" />
-                <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
-                <ScalarProperty Name="FECHA_FINAL" ColumnName="FECHA_FINAL" />
-                <ScalarProperty Name="SABADO_ACTIVO" ColumnName="SABADO_ACTIVO" />
-                <ScalarProperty Name="DOMINGO_ACTIVO" ColumnName="DOMINGO_ACTIVO" />
                 <ScalarProperty Name="USUARIO_REGISTRO" ColumnName="USUARIO_REGISTRO" />
                 <ScalarProperty Name="FECHAHORA_REGISTRO" ColumnName="FECHAHORA_REGISTRO" />
                 <ScalarProperty Name="USUARIO_ULTIMA_ACTUALIZACION" ColumnName="USUARIO_ULTIMA_ACTUALIZACION" />
@@ -8469,6 +8295,7 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <EntitySetMapping Name="REGISTRO_ASISTENCIA">
             <EntityTypeMapping TypeName="AxesoModel.REGISTRO_ASISTENCIA">
               <MappingFragment StoreEntitySet="REGISTRO_ASISTENCIA">
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
                 <ScalarProperty Name="CVE_COMPANIA" ColumnName="CVE_COMPANIA" />
                 <ScalarProperty Name="FOLIO" ColumnName="FOLIO" />
                 <ScalarProperty Name="NUM_NOMINA" ColumnName="NUM_NOMINA" />
@@ -8906,6 +8733,7 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
           <EntitySetMapping Name="PLAN_TRABAJO_OT_HISTORIAL">
             <EntityTypeMapping TypeName="AxesoModel.PLAN_TRABAJO_OT_HISTORIAL">
               <MappingFragment StoreEntitySet="PLAN_TRABAJO_OT_HISTORIAL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CVE_COMPANIA" ColumnName="CVE_COMPANIA" />
                 <ScalarProperty Name="FOLIO_OT" ColumnName="FOLIO_OT" />
                 <ScalarProperty Name="ACCION" ColumnName="ACCION" />
@@ -8937,6 +8765,7 @@ error 6004: The table 'Axeso.dbo.CONTACTOS' is referenced by a relationship, but
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_UpdatePlanTrabajoOT" FunctionName="AxesoModel.Store.sp_UpdatePlanTrabajoOT" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

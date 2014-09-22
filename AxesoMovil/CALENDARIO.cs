@@ -18,7 +18,6 @@ namespace AxesoMovil
         {
             this.CALENDARIO_FESTIVO = new HashSet<CALENDARIO_FESTIVO>();
             this.CALENDARIO_LABORAL = new HashSet<CALENDARIO_LABORAL>();
-            this.CALENDARIO_NOLABORAL = new HashSet<CALENDARIO_NOLABORAL>();
         }
     
         public int CVE_COMPANIA { get; set; }
@@ -30,11 +29,19 @@ namespace AxesoMovil
         public System.DateTime FECHAHORA_REGISTRO { get; set; }
         public int USUARIO_ULTIMA_ACTUALIZACION { get; set; }
         public System.DateTime FECHAHORA_ULTIMA_ACTUALIZACION { get; set; }
+        public System.DateTime FECHA_INICIO { get; set; }
+        public System.DateTime FECHA_FINAL { get; set; }
+        public bool LUNES { get; set; }
+        public bool MARTES { get; set; }
+        public bool MIERCOLES { get; set; }
+        public bool JUEVES { get; set; }
+        public bool VIERNES { get; set; }
+        public bool SABADO { get; set; }
+        public bool DOMINGO { get; set; }
     
         public virtual COMPANIA COMPANIA { get; set; }
         public virtual ICollection<CALENDARIO_FESTIVO> CALENDARIO_FESTIVO { get; set; }
         public virtual ICollection<CALENDARIO_LABORAL> CALENDARIO_LABORAL { get; set; }
-        public virtual ICollection<CALENDARIO_NOLABORAL> CALENDARIO_NOLABORAL { get; set; }
         public virtual SUCURSAL SUCURSAL { get; set; }
     }
 }

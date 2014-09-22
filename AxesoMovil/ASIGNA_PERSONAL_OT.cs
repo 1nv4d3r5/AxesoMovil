@@ -23,5 +23,9 @@ namespace AxesoMovil
         public decimal SUELDO_DIARIO { get; set; }
         public int USUARIO_REGISTRO { get; set; }
         public System.DateTime FECHAHORA_REGISTRO { get; set; }
+        public Nullable<int> USUARIO_ULTIMA_ACTUALIZACION { get; set; }
+        public Nullable<System.DateTime> FECHAHORA_ULTIMA_ACTUALIZACION { get; set; }
+        public Nullable<int> CVE_UNIDAD_DURACION { get; set; }
+        public Nullable<int> DURACION_REAL { get; set; }
     }
 }

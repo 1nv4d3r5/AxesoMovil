@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -187,6 +189,86 @@ namespace AxesoMovil
                                     COMENTARIOS = planHistorial.COMENTARIOS
                                 };
                 return historial.OrderBy(h => h.FECHAHORA_ACTUALIZACION).ToList();
+            }
+        }
+
+        public bool AgregarReporte(ReporteBitacora reporte)
+        {
+            using (AxesoEntities db = new AxesoEntities())
+            {
+                PLAN_TRABAJO_OT plan = (from planOT in db.PLAN_TRABAJO_OT
+                                        where planOT.CVE_COMPANIA == reporte.CVE_COMPANIA
+                                            && planOT.FOLIO_OT == reporte.FOLIO_OT
+                                            && planOT.CVE_ETAPA_OT == reporte.CVE_ETAPA_OT
+                                            && planOT.CVE_SUBETAPA_OT == reporte.CVE_SUBETAPA_OT
+                                        select planOT).FirstOrDefault();
+                // Duplicar la tupla actual del plan de trabajo.
+                PLAN_TRABAJO_OT_HISTORIAL historial = new PLAN_TRABAJO_OT_HISTORIAL
+                    {
+                        CVE_COMPANIA = plan.CVE_COMPANIA,
+                        FOLIO_OT = plan.FOLIO_OT,
+                        ACCION = "SEGUIMIENTO",
+                        CVE_ETAPA_OT = plan.CVE_ETAPA_OT,
+                        CVE_SUBETAPA_OT = plan.CVE_SUBETAPA_OT,
+                        DURACION_ESTIMADA = plan.DURACION_ESTIMADA,
+                        CVE_UNIDAD_DURACION = plan.CVE_UNIDAD_DURACION,
+                        PORCENTAJE_AVANCE = plan.PORCENTAJE_AVANCE,
+                        USUARIO_RESPONSABLE_SUBETAPA = plan.USUARIO_RESPONSABLE_SUBETAPA,
+                        FECHA_INICIO_ESTIMADA = plan.FECHA_INICIO_ESTIMADA,
+                        FECHA_FINAL_ESTIMADA = plan.FECHA_FINAL_ESTIMADA,
+                        FECHA_INICIO_REAL = plan.FECHA_INICIO_REAL,
+                        FECHA_FINAL_REAL = plan.FECHA_FINAL_REAL,
+                        USUARIO_REGISTRO = plan.USUARIO_REGISTRO,
+                        FECHAHORA_USUARIO_REGISTRO = plan.FECHAHORA_REGISTRO,
+                        USUARIO_ACTUALIZACION = plan.USUARIO_ULTIMA_ACTUALIZA,
+                        FECHAHORA_ACTUALIZACION = plan.FECHAHORA_ULTIMA_ACTUALIZA,
+                        PORCENTAJE_AVANCE_ETAPA = plan.PORCENTAJE_AVANCE_ETAPA,
+                        COMENTARIOS = plan.COMENTARIOS
+                    };
+                try
+                {
+                    // Guardar el duplicado en la tabla de historial.
+                    db.PLAN_TRABAJO_OT_HISTORIAL.Add(historial);
+                    // Actualizar los datos de la tabla del plan actual.
+                    plan.PORCENTAJE_AVANCE = reporte.AVANCE;
+                    plan.USUARIO_ULTIMA_ACTUALIZA = reporte.ID_USUARIO;
+                    plan.PORCENTAJE_AVANCE_ETAPA = (int)(from planOT in db.PLAN_TRABAJO_OT
+                                                        where planOT.CVE_COMPANIA == reporte.CVE_COMPANIA && planOT.FOLIO_OT == reporte.FOLIO_OT
+                                                        select planOT.PORCENTAJE_AVANCE ?? 0).Average();
+                    plan.COMENTARIOS = reporte.COMENTARIOS;
+                    if (plan.FECHA_INICIO_REAL == null)
+                    {
+                        plan.FECHA_INICIO_REAL = DateTime.Today;
+                    }
+                    if (reporte.AVANCE == 100)
+                    {
+                        plan.FECHA_FINAL_REAL = DateTime.Today;
+                    }
+                    plan.FECHAHORA_ULTIMA_ACTUALIZA = DateTime.Now;
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var eve in ex.EntityValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            System.Diagnostics.Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    return false;
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.InnerException);
+                    return false;
+                    throw;
+                }
             }
         }
     }

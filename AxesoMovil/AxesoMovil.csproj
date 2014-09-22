@@ -125,9 +125,6 @@
     <Compile Include="CALENDARIO_LABORAL.cs">
       <DependentUpon>AxesoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CALENDARIO_NOLABORAL.cs">
-      <DependentUpon>AxesoModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="CLASIFICACION_SERVICIO.cs">
       <DependentUpon>AxesoModel.tt</DependentUpon>
     </Compile>
@@ -186,6 +183,7 @@
     <Compile Include="ESTATUS_OT.cs">
       <DependentUpon>AxesoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReporteBitacora.cs" />
     <Compile Include="SubetapaHistorial.cs" />
     <Compile Include="SubetapaInfo.cs" />
     <Compile Include="EtapaInfo.cs" />
@@ -375,6 +373,7 @@
       <LastGenOutput>AxesoModel.cs</LastGenOutput>
     </Content>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\AxesoMovil.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -38,6 +38,9 @@ namespace AxesoMovil
         public int DURACION { get; set; }
         public int CVE_TIPO_MONEDA { get; set; }
         public decimal PRECIO_VENTA_CAPTURA { get; set; }
+        public Nullable<int> TIEMPO_TOTAL_HOMBRE { get; set; }
+        public Nullable<int> TIEMPO_PLANEADO { get; set; }
+        public Nullable<int> TIEMPO_POR_PROGRAMAR { get; set; }
     
         public virtual ANALISIS_MARGEN ANALISIS_MARGEN { get; set; }
         public virtual ORDEN_TRABAJO ORDEN_TRABAJO { get; set; }

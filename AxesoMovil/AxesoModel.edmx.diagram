@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="87f08cb7aac4414b9802b820f40b5f9f" Name="Diagram1" ZoomLevel="47">
+      <Diagram DiagramId="87f08cb7aac4414b9802b820f40b5f9f" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="AxesoModel.ACOPIO_MATERIALES" Width="1.5" PointX="21" PointY="67.375" IsExpanded="true" />
         <EntityTypeShape EntityType="AxesoModel.AM_CONDICION_COMERCIAL" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AxesoModel.AM_MANO_OBRA" Width="1.5" PointX="24" PointY="72.375" IsExpanded="true" />
@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="AxesoModel.CALENDARIO" Width="1.5" PointX="8.25" PointY="69.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AxesoModel.CALENDARIO_FESTIVO" Width="1.5" PointX="13.5" PointY="69.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AxesoModel.CALENDARIO_LABORAL" Width="1.5" PointX="13.5" PointY="64.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AxesoModel.CALENDARIO_NOLABORAL" Width="1.5" PointX="13.5" PointY="74.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AxesoModel.CLASIFICACION_SERVICIO" Width="1.5" PointX="24.5" PointY="94.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AxesoModel.CLIENTE_UBICACION" Width="1.5" PointX="8.25" PointY="79.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AxesoModel.CLIENTE_UBICACION_DEPTO" Width="1.5" PointX="10.5" PointY="73.125" IsExpanded="true" />
@@ -107,11 +106,9 @@
         <AssociationConnector Association="AxesoModel.FK_CALENDARIO_COMPANIA" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_CALENDARIO_FESTIVO_CALENDARIO" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_CALENDARIO_LABORAL_CALENDARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="AxesoModel.FK_CALENDARIO_NOLABORAL_CALENDARIO" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_CALENDARIO_SUCURSAL" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_CALENDARIO_FESTIVO_COMPANIA" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_CALENDARIO_LABORAL_COMPANIA" ManuallyRouted="false" />
-        <AssociationConnector Association="AxesoModel.FK_CALENDARIO_NOLABORAL_COMPANIA" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_SERVICIOS_CLASIFICACION_SERVICIO" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_CLIENTE_UBICACION_DEPTO_CLIENTE_UBICACION" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_CLIENTE_UBICACION_DEPTO_CLIENTES" ManuallyRouted="false" />

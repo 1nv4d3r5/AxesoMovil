@@ -48,5 +48,12 @@ namespace AxesoMovil
         [WebGet(UriTemplate = "GetSubetapaHistorial?compania={cve_comp}&folio={folio}&etapa={etapa}&subetapa={subetapa}",
             ResponseFormat = WebMessageFormat.Json)]
         List<SubetapaHistorial> GetSubetapaHistorial(string cve_comp, string folio, string etapa, string subetapa);
+
+        [OperationContract]
+        [WebInvoke(UriTemplate = "AgregarReporte", Method = "POST",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare)]
+        bool AgregarReporte(ReporteBitacora reporte);
     }
 }
