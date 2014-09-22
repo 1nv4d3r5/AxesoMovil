@@ -159,6 +159,7 @@ namespace AxesoMovil
                                     DES_SUBETAPA_OT = (from subetapa in db.SUBETAPA_OT
                                                        where subetapa.CVE_COMPANIA == cve_compania && subetapa.CVE_ETAPA_OT == cve_etapa_ot && subetapa.CVE_SUBETAPA_OT == plan.CVE_SUBETAPA_OT
                                                        select subetapa.DES_SUBETAPA_OT).FirstOrDefault(),
+                                    COMENTARIOS = plan.COMENTARIOS,
                                     FECHA_INICIO_ESTIMADA = plan.FECHA_INICIO_ESTIMADA,
                                     FECHA_FINAL_ESTIMADA = plan.FECHA_FINAL_ESTIMADA,
                                     FECHA_INICIO_REAL = plan.FECHA_INICIO_REAL,

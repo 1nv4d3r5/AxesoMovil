@@ -16,6 +16,9 @@ namespace AxesoMovil
         public string DES_SUBETAPA_OT { get; set; }
 
         [DataMember]
+        public string COMENTARIOS { get; set; }
+
+        [DataMember]
         public DateTime? FECHA_INICIO_ESTIMADA { get; set; }
 
         [DataMember]
