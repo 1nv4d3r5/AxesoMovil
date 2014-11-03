@@ -35,7 +35,7 @@ namespace AxesoMovil
                                            NOMBRE_COMPANIA = compania.NOMBRE_COMPANIA,
                                            TRANSACCIONES = (from acceso in db.ACCESO
                                                             where acceso.CVE_COMPANIA == usuario.CVE_COMPANIA && acceso.CVE_GPO_USUARIO == usuario.CVE_GPO_USUARIO && acceso.CVE_PROGRAMA == CVE_PROGRAMA_MOVIL
-                                                            select new Transaccion { CVE_TRANSACCION = acceso.CVE_TRANSACCION - acceso.CVE_PROGRAMA ?? 0 }).ToList()
+                                                            select new Transaccion { CVE_TRANSACCION = acceso.CVE_TRANSACCION }).ToList()
                                        };
                 // Un for es la manera mas simple de verificar que la lista de resultados de tipo IQueryable este vacia o no.
                 foreach (UsuarioInfo ui in usuarioInfoQuery)

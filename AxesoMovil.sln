@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxesoMovil", "AxesoMovil\AxesoMovil.csproj", "{2BBEA410-D8D0-443C-BD4C-0FFDCB517949}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxesoPruebas", "AxesoPruebas\AxesoPruebas.csproj", "{6C48CC31-54F6-4646-BB98-EE81540360C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2BBEA410-D8D0-443C-BD4C-0FFDCB517949}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BBEA410-D8D0-443C-BD4C-0FFDCB517949}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BBEA410-D8D0-443C-BD4C-0FFDCB517949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C48CC31-54F6-4646-BB98-EE81540360C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C48CC31-54F6-4646-BB98-EE81540360C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C48CC31-54F6-4646-BB98-EE81540360C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C48CC31-54F6-4646-BB98-EE81540360C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
