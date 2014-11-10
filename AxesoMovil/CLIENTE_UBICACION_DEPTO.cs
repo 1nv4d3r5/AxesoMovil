@@ -38,5 +38,6 @@ namespace AxesoMovil
         public virtual CLIENTE_UBICACION CLIENTE_UBICACION { get; set; }
         public virtual CLIENTES CLIENTES { get; set; }
         public virtual ICollection<ORDEN_TRABAJO> ORDEN_TRABAJO { get; set; }
+        public virtual CLIENTES CLIENTES1 { get; set; }
     }
 }

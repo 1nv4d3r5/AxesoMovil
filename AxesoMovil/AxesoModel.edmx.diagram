@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="87f08cb7aac4414b9802b820f40b5f9f" Name="Diagram1" ZoomLevel="71">
+      <Diagram DiagramId="87f08cb7aac4414b9802b820f40b5f9f" Name="Diagram1" ZoomLevel="77">
         <EntityTypeShape EntityType="AxesoModel.ACOPIO_MATERIALES" Width="1.5" PointX="21" PointY="67.375" IsExpanded="true" />
         <EntityTypeShape EntityType="AxesoModel.AM_CONDICION_COMERCIAL" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AxesoModel.AM_MANO_OBRA" Width="1.5" PointX="24" PointY="72.375" IsExpanded="true" />
@@ -163,7 +163,6 @@
         <AssociationConnector Association="AxesoModel.FK_LT_MATERIALES_OT_ORDEN_TRABAJO" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_LT_SERVICIOS_ORDEN_TRABAJO" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_LT_SERVICIOS_SERVICIOS" ManuallyRouted="false" />
-        <AssociationConnector Association="AxesoModel.FK_LT_SERVICIOS_UNIDAD_SERVICIO" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_MANO_OBRA_PLANEADA_ORDEN_TRABAJO" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_MANO_OBRA_PLANEADA_UNIDAD_DURACION" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_MANO_OBRA_REAL_ORDEN_TRABAJO" ManuallyRouted="false" />
@@ -189,6 +188,8 @@
         <AssociationConnector Association="AxesoModel.FK_PLAN_TRABAJO_OT_UNIDAD_DURACION" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_AM_SERVICIOS_UNIDAD_SERVICIO" ManuallyRouted="false" />
         <AssociationConnector Association="AxesoModel.FK_USUARIO_SUCURSAL_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="AxesoModel.FK_CLIENTE_UBICACION_DEPTO_CLIENTES1" />
+        <AssociationConnector Association="AxesoModel.FK_LT_SERVICIOS_UNIDAD_SERVICIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

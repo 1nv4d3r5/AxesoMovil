@@ -16,5 +16,6 @@ namespace AxesoMovil
     {
         public int CVE_PROGRAMA { get; set; }
         public string NOMBRE_PROGRAMA { get; set; }
+        public string URL_PROGRAMA { get; set; }
     }
 }

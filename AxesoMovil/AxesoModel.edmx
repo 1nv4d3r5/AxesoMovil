@@ -426,7 +426,7 @@ warning 6002: The table/view 'Axeso.dbo.ARCHIVOS_ADJUNTOS' does not have a prima
           <Key>
             <PropertyRef Name="CVE_COMPANIA" />
           </Key>
-          <Property Name="CVE_COMPANIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CVE_COMPANIA" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="RFC_COMPANIA" Type="varchar" MaxLength="13" />
           <Property Name="NOMBRE_COMPANIA" Type="varchar" MaxLength="90" />
           <Property Name="CALLE_COMPANIA" Type="varchar" MaxLength="60" />
@@ -1013,12 +1013,13 @@ warning 6002: The table/view 'Axeso.dbo.LoginCorrecto' does not have a primary k
             <PropertyRef Name="CVE_COMPANIA" />
             <PropertyRef Name="FOLIO_OT" />
             <PropertyRef Name="CVE_SERVICIO" />
+            <PropertyRef Name="CVE_UNIDAD_SERVICIO" />
           </Key>
           <Property Name="CVE_COMPANIA" Type="int" Nullable="false" />
           <Property Name="FOLIO_OT" Type="int" Nullable="false" />
           <Property Name="CVE_SERVICIO" Type="int" Nullable="false" />
+          <Property Name="CVE_UNIDAD_SERVICIO" Type="int" Nullable="false" />
           <Property Name="CANTIDAD_SERVICIO" Type="int" Nullable="false" />
-          <Property Name="CVE_UNIDAD_SERVICIO" Type="int" />
           <Property Name="USUARIO_REGISTRO" Type="int" Nullable="false" />
           <Property Name="FECHAHORA_REGISTRO" Type="datetime" Nullable="false" />
           <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="int" Nullable="false" />
@@ -1211,13 +1212,18 @@ warning 6002: The table/view 'Axeso.dbo.LoginCorrecto' does not have a primary k
         </EntityType>
         <EntityType Name="PLAN_TRABAJO_OT_HISTORIAL">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="CVE_COMPANIA" />
+            <PropertyRef Name="FOLIO_OT" />
+            <PropertyRef Name="CVE_ETAPA_OT" />
+            <PropertyRef Name="CVE_SUBETAPA_OT" />
+            <PropertyRef Name="NUM_BITACORA" />
           </Key>
           <Property Name="CVE_COMPANIA" Type="int" Nullable="false" />
           <Property Name="FOLIO_OT" Type="int" Nullable="false" />
           <Property Name="ACCION" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="CVE_ETAPA_OT" Type="int" Nullable="false" />
           <Property Name="CVE_SUBETAPA_OT" Type="int" Nullable="false" />
+          <Property Name="NUM_BITACORA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DURACION_ESTIMADA" Type="numeric" Precision="3" Scale="1" Nullable="false" />
           <Property Name="CVE_UNIDAD_DURACION" Type="int" Nullable="false" />
           <Property Name="PORCENTAJE_AVANCE" Type="int" />
@@ -1232,7 +1238,6 @@ warning 6002: The table/view 'Axeso.dbo.LoginCorrecto' does not have a primary k
           <Property Name="FECHAHORA_ACTUALIZACION" Type="datetime" Nullable="false" />
           <Property Name="PORCENTAJE_AVANCE_ETAPA" Type="int" Nullable="false" />
           <Property Name="COMENTARIOS" Type="varchar" MaxLength="200" />
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="PROGRAMAS_SISTEMA">
           <Key>
@@ -1240,6 +1245,7 @@ warning 6002: The table/view 'Axeso.dbo.LoginCorrecto' does not have a primary k
           </Key>
           <Property Name="CVE_PROGRAMA" Type="int" Nullable="false" />
           <Property Name="NOMBRE_PROGRAMA" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="URL_PROGRAMA" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="PROVEEDOR">
           <Key>
@@ -1893,8 +1899,8 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
               <PropertyRef Name="CVE_CLIENTE" />
             </Principal>
             <Dependent Role="CLIENTE_UBICACION_DEPTO">
-              <PropertyRef Name="CVE_UBICACION" />
               <PropertyRef Name="CVE_COMPANIA" />
+              <PropertyRef Name="CVE_CLIENTE" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2361,7 +2367,7 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LT_SERVICIOS_UNIDAD_SERVICIO">
-          <End Role="UNIDAD_SERVICIO" Type="Self.UNIDAD_SERVICIO" Multiplicity="0..1" />
+          <End Role="UNIDAD_SERVICIO" Type="Self.UNIDAD_SERVICIO" Multiplicity="1" />
           <End Role="LT_SERVICIOS" Type="Self.LT_SERVICIOS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UNIDAD_SERVICIO">
@@ -3944,6 +3950,7 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
           <NavigationProperty Name="CLIENTE_UBICACION" Relationship="Self.FK_CLIENTE_UBICACION_DEPTO_CLIENTE_UBICACION" FromRole="CLIENTE_UBICACION_DEPTO" ToRole="CLIENTE_UBICACION" />
           <NavigationProperty Name="CLIENTES" Relationship="Self.FK_CLIENTE_UBICACION_DEPTO_CLIENTES" FromRole="CLIENTE_UBICACION_DEPTO" ToRole="CLIENTES" />
           <NavigationProperty Name="ORDEN_TRABAJO" Relationship="Self.FK_ORDEN_TRABAJO_CLIENTE_UBICACION_DEPTO" FromRole="CLIENTE_UBICACION_DEPTO" ToRole="ORDEN_TRABAJO" />
+          <NavigationProperty Name="CLIENTES1" Relationship="AxesoModel.FK_CLIENTE_UBICACION_DEPTO_CLIENTES1" FromRole="CLIENTE_UBICACION_DEPTO" ToRole="CLIENTES" />
         </EntityType>
         <EntityType Name="CLIENTES">
           <Key>
@@ -3982,6 +3989,7 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
           <NavigationProperty Name="EMPRESA" Relationship="Self.FK_CLIENTES_EMPRESA" FromRole="CLIENTES" ToRole="EMPRESA" />
           <NavigationProperty Name="PAIS" Relationship="Self.FK_CLIENTES_PAIS" FromRole="CLIENTES" ToRole="PAIS" />
           <NavigationProperty Name="ORDEN_TRABAJO" Relationship="Self.FK_ORDEN_TRABAJO_CLIENTES" FromRole="CLIENTES" ToRole="ORDEN_TRABAJO" />
+          <NavigationProperty Name="CLIENTE_UBICACION_DEPTO1" Relationship="AxesoModel.FK_CLIENTE_UBICACION_DEPTO_CLIENTES1" FromRole="CLIENTES" ToRole="CLIENTE_UBICACION_DEPTO" />
         </EntityType>
         <EntityType Name="COMPANIA">
           <Key>
@@ -4509,19 +4517,20 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
             <PropertyRef Name="CVE_COMPANIA" />
             <PropertyRef Name="FOLIO_OT" />
             <PropertyRef Name="CVE_SERVICIO" />
+            <PropertyRef Name="CVE_UNIDAD_SERVICIO" />
           </Key>
           <Property Name="CVE_COMPANIA" Type="Int32" Nullable="false" />
           <Property Name="FOLIO_OT" Type="Int32" Nullable="false" />
           <Property Name="CVE_SERVICIO" Type="Int32" Nullable="false" />
           <Property Name="CANTIDAD_SERVICIO" Type="Int32" Nullable="false" />
-          <Property Name="CVE_UNIDAD_SERVICIO" Type="Int32" />
+          <Property Name="CVE_UNIDAD_SERVICIO" Type="Int32" Nullable="false" />
           <Property Name="USUARIO_REGISTRO" Type="Int32" Nullable="false" />
           <Property Name="FECHAHORA_REGISTRO" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="Int32" Nullable="false" />
           <Property Name="FECHAHORA_ULTIMA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ORDEN_TRABAJO" Relationship="Self.FK_LT_SERVICIOS_ORDEN_TRABAJO" FromRole="LT_SERVICIOS" ToRole="ORDEN_TRABAJO" />
           <NavigationProperty Name="SERVICIOS" Relationship="Self.FK_LT_SERVICIOS_SERVICIOS" FromRole="LT_SERVICIOS" ToRole="SERVICIOS" />
-          <NavigationProperty Name="UNIDAD_SERVICIO" Relationship="Self.FK_LT_SERVICIOS_UNIDAD_SERVICIO" FromRole="LT_SERVICIOS" ToRole="UNIDAD_SERVICIO" />
+          <NavigationProperty Name="UNIDAD_SERVICIO" Relationship="AxesoModel.FK_LT_SERVICIOS_UNIDAD_SERVICIO" FromRole="LT_SERVICIOS" ToRole="UNIDAD_SERVICIO" />
         </EntityType>
         <EntityType Name="MANO_OBRA_PLANEADA">
           <Key>
@@ -4737,6 +4746,7 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
           </Key>
           <Property Name="CVE_PROGRAMA" Type="Int32" Nullable="false" />
           <Property Name="NOMBRE_PROGRAMA" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="URL_PROGRAMA" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PROVEEDOR">
           <Key>
@@ -5086,9 +5096,9 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
           <Property Name="USUARIO_ULTIMA_ACTUALIZACION" Type="Int32" Nullable="false" />
           <Property Name="FECHAHORA_ULTIMA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="LISTA_PRECIOS_SERVICIO" Relationship="Self.FK_LISTA_PRECIOS_SERVICIO_UNIDAD_SERVICIO" FromRole="UNIDAD_SERVICIO" ToRole="LISTA_PRECIOS_SERVICIO" />
-          <NavigationProperty Name="LT_SERVICIOS" Relationship="Self.FK_LT_SERVICIOS_UNIDAD_SERVICIO" FromRole="UNIDAD_SERVICIO" ToRole="LT_SERVICIOS" />
           <NavigationProperty Name="SERVICIOS" Relationship="Self.FK_SERVICIOS_UNIDAD_SERVICIO" FromRole="UNIDAD_SERVICIO" ToRole="SERVICIOS" />
           <NavigationProperty Name="AM_SERVICIOS" Relationship="Self.FK_AM_SERVICIOS_UNIDAD_SERVICIO" FromRole="UNIDAD_SERVICIO" ToRole="AM_SERVICIOS" />
+          <NavigationProperty Name="LT_SERVICIOS" Relationship="AxesoModel.FK_LT_SERVICIOS_UNIDAD_SERVICIO" FromRole="UNIDAD_SERVICIO" ToRole="LT_SERVICIOS" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -5363,7 +5373,11 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
         </EntityType>
         <EntityType Name="PLAN_TRABAJO_OT_HISTORIAL">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="NUM_BITACORA" />
+            <PropertyRef Name="CVE_COMPANIA" />
+            <PropertyRef Name="FOLIO_OT" />
+            <PropertyRef Name="CVE_ETAPA_OT" />
+            <PropertyRef Name="CVE_SUBETAPA_OT" />
           </Key>
           <Property Name="CVE_COMPANIA" Type="Int32" Nullable="false" />
           <Property Name="FOLIO_OT" Type="Int32" Nullable="false" />
@@ -5388,7 +5402,7 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
           <NavigationProperty Name="ORDEN_TRABAJO" Relationship="Self.FK_PLAN_TRABAJO_OT_HISTORIAL_ORDEN_TRABAJO" FromRole="PLAN_TRABAJO_OT_HISTORIAL" ToRole="ORDEN_TRABAJO" />
           <NavigationProperty Name="SUBETAPA_OT" Relationship="Self.FK_PLAN_TRABAJO_OT_HISTORIAL_SUBETAPA_OT" FromRole="PLAN_TRABAJO_OT_HISTORIAL" ToRole="SUBETAPA_OT" />
           <NavigationProperty Name="UNIDAD_DURACION" Relationship="Self.FK_PLAN_TRABAJO_OT_HISTORIAL_UNIDAD_DURACION" FromRole="PLAN_TRABAJO_OT_HISTORIAL" ToRole="UNIDAD_DURACION" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUM_BITACORA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="TRANSACCION">
           <Key>
@@ -6428,20 +6442,6 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LT_SERVICIOS_UNIDAD_SERVICIO">
-          <End Role="UNIDAD_SERVICIO" Type="Self.UNIDAD_SERVICIO" Multiplicity="0..1" />
-          <End Role="LT_SERVICIOS" Type="Self.LT_SERVICIOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UNIDAD_SERVICIO">
-              <PropertyRef Name="CVE_COMPANIA" />
-              <PropertyRef Name="CVE_UNIDAD_SERVICIO" />
-            </Principal>
-            <Dependent Role="LT_SERVICIOS">
-              <PropertyRef Name="CVE_COMPANIA" />
-              <PropertyRef Name="CVE_UNIDAD_SERVICIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MANO_OBRA_PLANEADA_ORDEN_TRABAJO">
           <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="1" />
           <End Role="MANO_OBRA_PLANEADA" Type="Self.MANO_OBRA_PLANEADA" Multiplicity="*" />
@@ -7173,10 +7173,6 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
             <End Role="SERVICIOS" EntitySet="SERVICIOS" />
             <End Role="LT_SERVICIOS" EntitySet="LT_SERVICIOS" />
           </AssociationSet>
-          <AssociationSet Name="FK_LT_SERVICIOS_UNIDAD_SERVICIO" Association="Self.FK_LT_SERVICIOS_UNIDAD_SERVICIO">
-            <End Role="UNIDAD_SERVICIO" EntitySet="UNIDAD_SERVICIO" />
-            <End Role="LT_SERVICIOS" EntitySet="LT_SERVICIOS" />
-          </AssociationSet>
           <AssociationSet Name="FK_MANO_OBRA_PLANEADA_ORDEN_TRABAJO" Association="Self.FK_MANO_OBRA_PLANEADA_ORDEN_TRABAJO">
             <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
             <End Role="MANO_OBRA_PLANEADA" EntitySet="MANO_OBRA_PLANEADA" />
@@ -7294,7 +7290,43 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
             <Parameter Name="COMENTARIOS" Mode="In" Type="String" />
             <Parameter Name="OPERACION" Mode="In" Type="String" />
           </FunctionImport>
+          <AssociationSet Name="FK_CLIENTE_UBICACION_DEPTO_CLIENTES1" Association="AxesoModel.FK_CLIENTE_UBICACION_DEPTO_CLIENTES1">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="CLIENTE_UBICACION_DEPTO" EntitySet="CLIENTE_UBICACION_DEPTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LT_SERVICIOS_UNIDAD_SERVICIO" Association="AxesoModel.FK_LT_SERVICIOS_UNIDAD_SERVICIO">
+            <End Role="UNIDAD_SERVICIO" EntitySet="UNIDAD_SERVICIO" />
+            <End Role="LT_SERVICIOS" EntitySet="LT_SERVICIOS" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_CLIENTE_UBICACION_DEPTO_CLIENTES1">
+          <End Type="AxesoModel.CLIENTES" Role="CLIENTES" Multiplicity="1" />
+          <End Type="AxesoModel.CLIENTE_UBICACION_DEPTO" Role="CLIENTE_UBICACION_DEPTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="CVE_COMPANIA" />
+              <PropertyRef Name="CVE_CLIENTE" />
+            </Principal>
+            <Dependent Role="CLIENTE_UBICACION_DEPTO">
+              <PropertyRef Name="CVE_COMPANIA" />
+              <PropertyRef Name="CVE_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LT_SERVICIOS_UNIDAD_SERVICIO">
+          <End Type="AxesoModel.UNIDAD_SERVICIO" Role="UNIDAD_SERVICIO" Multiplicity="1" />
+          <End Type="AxesoModel.LT_SERVICIOS" Role="LT_SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNIDAD_SERVICIO">
+              <PropertyRef Name="CVE_COMPANIA" />
+              <PropertyRef Name="CVE_UNIDAD_SERVICIO" />
+            </Principal>
+            <Dependent Role="LT_SERVICIOS">
+              <PropertyRef Name="CVE_COMPANIA" />
+              <PropertyRef Name="CVE_UNIDAD_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8229,6 +8261,7 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
           <EntitySetMapping Name="PROGRAMAS_SISTEMA">
             <EntityTypeMapping TypeName="AxesoModel.PROGRAMAS_SISTEMA">
               <MappingFragment StoreEntitySet="PROGRAMAS_SISTEMA">
+                <ScalarProperty Name="URL_PROGRAMA" ColumnName="URL_PROGRAMA" />
                 <ScalarProperty Name="CVE_PROGRAMA" ColumnName="CVE_PROGRAMA" />
                 <ScalarProperty Name="NOMBRE_PROGRAMA" ColumnName="NOMBRE_PROGRAMA" />
               </MappingFragment>
@@ -8733,7 +8766,7 @@ warning 6002: The table/view 'Axeso.dbo.TRANSACCION' does not have a primary key
           <EntitySetMapping Name="PLAN_TRABAJO_OT_HISTORIAL">
             <EntityTypeMapping TypeName="AxesoModel.PLAN_TRABAJO_OT_HISTORIAL">
               <MappingFragment StoreEntitySet="PLAN_TRABAJO_OT_HISTORIAL">
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NUM_BITACORA" ColumnName="NUM_BITACORA" />
                 <ScalarProperty Name="CVE_COMPANIA" ColumnName="CVE_COMPANIA" />
                 <ScalarProperty Name="FOLIO_OT" ColumnName="FOLIO_OT" />
                 <ScalarProperty Name="ACCION" ColumnName="ACCION" />

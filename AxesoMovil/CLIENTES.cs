@@ -18,6 +18,7 @@ namespace AxesoMovil
         {
             this.CLIENTE_UBICACION_DEPTO = new HashSet<CLIENTE_UBICACION_DEPTO>();
             this.ORDEN_TRABAJO = new HashSet<ORDEN_TRABAJO>();
+            this.CLIENTE_UBICACION_DEPTO1 = new HashSet<CLIENTE_UBICACION_DEPTO>();
         }
     
         public int CVE_COMPANIA { get; set; }
@@ -53,5 +54,6 @@ namespace AxesoMovil
         public virtual EMPRESA EMPRESA { get; set; }
         public virtual PAIS PAIS { get; set; }
         public virtual ICollection<ORDEN_TRABAJO> ORDEN_TRABAJO { get; set; }
+        public virtual ICollection<CLIENTE_UBICACION_DEPTO> CLIENTE_UBICACION_DEPTO1 { get; set; }
     }
 }

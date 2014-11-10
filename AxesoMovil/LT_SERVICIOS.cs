@@ -18,7 +18,7 @@ namespace AxesoMovil
         public int FOLIO_OT { get; set; }
         public int CVE_SERVICIO { get; set; }
         public int CANTIDAD_SERVICIO { get; set; }
-        public Nullable<int> CVE_UNIDAD_SERVICIO { get; set; }
+        public int CVE_UNIDAD_SERVICIO { get; set; }
         public int USUARIO_REGISTRO { get; set; }
         public System.DateTime FECHAHORA_REGISTRO { get; set; }
         public int USUARIO_ULTIMA_ACTUALIZACION { get; set; }

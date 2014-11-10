@@ -17,9 +17,9 @@ namespace AxesoMovil
         public UNIDAD_SERVICIO()
         {
             this.LISTA_PRECIOS_SERVICIO = new HashSet<LISTA_PRECIOS_SERVICIO>();
-            this.LT_SERVICIOS = new HashSet<LT_SERVICIOS>();
             this.SERVICIOS = new HashSet<SERVICIOS>();
             this.AM_SERVICIOS = new HashSet<AM_SERVICIOS>();
+            this.LT_SERVICIOS = new HashSet<LT_SERVICIOS>();
         }
     
         public int CVE_COMPANIA { get; set; }
@@ -31,8 +31,8 @@ namespace AxesoMovil
         public System.DateTime FECHAHORA_ULTIMA_ACTUALIZACION { get; set; }
     
         public virtual ICollection<LISTA_PRECIOS_SERVICIO> LISTA_PRECIOS_SERVICIO { get; set; }
-        public virtual ICollection<LT_SERVICIOS> LT_SERVICIOS { get; set; }
         public virtual ICollection<SERVICIOS> SERVICIOS { get; set; }
         public virtual ICollection<AM_SERVICIOS> AM_SERVICIOS { get; set; }
+        public virtual ICollection<LT_SERVICIOS> LT_SERVICIOS { get; set; }
     }
 }
