@@ -183,6 +183,7 @@
     <Compile Include="ESTATUS_OT.cs">
       <DependentUpon>AxesoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="InfoLogin.cs" />
     <Compile Include="ReporteBitacora.cs" />
     <Compile Include="SubetapaHistorial.cs" />
     <Compile Include="SubetapaInfo.cs" />

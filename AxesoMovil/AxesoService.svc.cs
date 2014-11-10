@@ -64,6 +64,31 @@ namespace AxesoMovil
             }
         }
 
+        public UsuarioInfo LoginUsuario(InfoLogin login)
+        {
+            using (AxesoEntities db = new AxesoEntities())
+            {
+                var query = from usuario in db.USUARIO
+                            join compania in db.COMPANIA on usuario.CVE_COMPANIA equals compania.CVE_COMPANIA
+                            where usuario.CVE_COMPANIA == login.compania && usuario.CUENTA_USUARIO == login.cuenta && usuario.PASSWORD == login.password
+                            select new UsuarioInfo
+                            {
+                                ID_USUARIO = usuario.ID_USUARIO,
+                                CVE_COMPANIA = usuario.CVE_COMPANIA,
+                                NOMBRE_USUARIO = usuario.NOMBRE_USUARIO,
+                                NOMBRE_COMPANIA = compania.NOMBRE_COMPANIA,
+                                TRANSACCIONES = (from acceso in db.ACCESO
+                                                 where acceso.CVE_GPO_USUARIO == usuario.CVE_GPO_USUARIO && acceso.CVE_COMPANIA == usuario.CVE_COMPANIA && acceso.CVE_PROGRAMA == CVE_PROGRAMA_MOVIL
+                                                 select new Transaccion { CVE_TRANSACCION = acceso.CVE_TRANSACCION }).ToList()
+                            };
+                foreach (UsuarioInfo ui in query)
+                {
+                    return ui;
+                }
+                return null;
+            }
+        }
+
         public List<ClienteOTs> GetClientesUsuario(string id, string cve_comp)
         {
             int id_usuario = Int32.Parse(id);

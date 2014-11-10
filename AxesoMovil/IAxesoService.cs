@@ -25,6 +25,13 @@ namespace AxesoMovil
         UsuarioInfo ValidarUsuario(Login login);
 
         [OperationContract]
+        [WebInvoke(UriTemplate = "LoginUsuario", Method = "POST",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare)]
+        UsuarioInfo LoginUsuario(InfoLogin login);
+
+        [OperationContract]
         [WebGet(UriTemplate = "GetClientesUsuario?usuario={id}&compania={cve_comp}",
             ResponseFormat = WebMessageFormat.Json)]
         List<ClienteOTs> GetClientesUsuario(string id, string cve_comp);
